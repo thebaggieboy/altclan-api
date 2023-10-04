@@ -12,7 +12,7 @@ from account.models import BrandProfile
 class BrandSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Brand
-        fields = ['id', 'user', 'brand_name', 'brand_logo', 'brand_bio', 'slug']
+        fields = ['id', 'user', 'brand_name', 'brand_logo', 'brand_bio', 'slug', 'followers']
 
 class BrandProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
