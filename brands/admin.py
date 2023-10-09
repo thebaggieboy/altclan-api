@@ -15,7 +15,7 @@ class BrandAdmin(admin.ModelAdmin):
 
 class BrandProfileAdmin(admin.ModelAdmin):
     #inlines = [BrandInline]
-    list_display = ['user', 'display_picture', 'email_address', 'slug']
+    list_display = ['user', 'display_picture', 'mobile_number',  'slug']
 
 
 class MerchandiseAdmin(admin.ModelAdmin):

@@ -155,6 +155,7 @@ class CustomUser(AbstractBaseUser):
 
 class BrandUser(AbstractBaseUser):
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
+    username = models.CharField(blank=True, null=True, max_length=25, unique=True)
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -181,6 +182,10 @@ class BrandUser(AbstractBaseUser):
     def get_token(self):
         # The user is identified by their email address
         return self.token
+    
+    def get_username(self):
+        # This user is identified by their username
+        return self.username
 
     def __str__(self):
         return self.email
@@ -237,10 +242,7 @@ class BrandProfile(models.Model):
     display_picture = models.ImageField(upload_to='Brands/Display Picture', default='')
     merchandises = models.ManyToManyField(Merchandise)
     mobile_number = models.CharField(max_length=250, default='')
-    email_address = models.CharField(max_length=250, default='')
-
     slug = models.SlugField(null=True, blank=True, default='')
-
     billing_address = models.CharField(max_length=250, default='')
     city = models.CharField(max_length=250, default='')
     state = models.CharField(max_length=250, default='')

@@ -15,15 +15,14 @@ COMMUNITY_TYPE = (
     ('Arts', 'Arts'),
     ('Footwears & Canvas', 'Footwears & Canvas'),
 )
-CLOTHING_COLLECTION = (
+CLOTHING_CATEGORY= (
     ('Tops', 'Tops'),
     ('Pants', 'Pants'),
     ('Sweaters', 'Sweaters'),
     ('T-Shirts', 'T-Shirts'),
     ('Jackets', 'Jackets'),
-)
-
-ACCESSORIES_COLLECTIONS = (
+    ('Denim', 'Denim'),
+    ('Sweaters', 'Sweaters'),
     ('Watches', 'Watches'),
     ('Wallets', 'Wallets'),
     ('Bags', 'Bags'),
@@ -31,3 +30,13 @@ ACCESSORIES_COLLECTIONS = (
     ('Hats and Caps', 'Hats and Caps'),
     ('Belts', 'Belts'),
 )
+
+ACCESSORIES_CATEGORY = (
+    ('Watches', 'Watches'),
+    ('Wallets', 'Wallets'),
+    ('Bags', 'Bags'),
+    ('Sunglasses', 'Sunglasses'),
+    ('Hats and Caps', 'Hats and Caps'),
+    ('Belts', 'Belts'),
+)
+

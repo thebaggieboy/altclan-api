@@ -6,7 +6,7 @@ from .display import LABEL_DISPLAY, COLLECTION_DISPLAY, COMMUNITY_TYPE_DISPLAY
 from django.conf import settings
 User = settings.AUTH_USER_MODEL
 BrandUser = settings.BRAND_USER_MODEL
-from .choices import STATUS, GENDER, COMMUNITY_TYPE
+from .choices import STATUS, GENDER, COMMUNITY_TYPE, CLOTHING_CATEGORY
 
 class Brand(models.Model):
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
@@ -41,6 +41,8 @@ class Merchandise(models.Model):
     price = models.CharField(max_length=250, default='')
     delivery_cost = models.CharField(max_length=250, default='', null=True, blank=True)
     #images = models.ManyToManyField('MerchandiseGallery')
+    
+    category = models.CharField(choices=CLOTHING_CATEGORY, default='', null=True, blank=True, max_length=250)
     slug = models.SlugField()
 
     date_created = models.DateTimeField(default=timezone.now())
