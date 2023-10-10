@@ -28,6 +28,6 @@ class Command(BaseCommand):
         amount = options.get('amount', 10)
         #print(amount)
         #self._generate_users(amount)
-        #self._generate_brand(amount)
-        self._generate_merchandise(amount)
+        self._generate_brand(amount)
+        #self._generate_merchandise(amount)
 
