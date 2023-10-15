@@ -36,15 +36,18 @@ class Merchandise(models.Model):
     merchandise_name = models.CharField(max_length=250, default='')
     merchandise_color = models.CharField(max_length=250, default='')
     merchandise_size = models.CharField(max_length=250, default='')
+    #merchandise_sizes = models.CharField(max_length=250, default='', null=True, blank=True)
     display_image = models.ImageField(upload_to='Merch Image', default='')
+    gallery = models.ForeignKey('MerchandiseGallery', on_delete=models.CASCADE, null=True, blank=True)
+    available_color_1 = models.CharField(max_length=250, null=True, blank=True)
+    available_color_2 = models.CharField(max_length=250, null=True, blank=True)
+    available_color_3 = models.CharField(max_length=250, null=True, blank=True)
     labels = models.CharField(max_length=250, choices=LABEL_DISPLAY, default='')
     price = models.CharField(max_length=250, default='')
     delivery_cost = models.CharField(max_length=250, default='', null=True, blank=True)
-    #images = models.ManyToManyField('MerchandiseGallery')
-    
+    discount = models.CharField(max_length=250, default='', null=True, blank=True)
     category = models.CharField(choices=CLOTHING_CATEGORY, default='', null=True, blank=True, max_length=250)
     slug = models.SlugField()
-
     date_created = models.DateTimeField(default=timezone.now())
 
     def __str__(self):
@@ -55,9 +58,11 @@ class Merchandise(models.Model):
             self.slug = slugify(f'{self.brand} {self.merchandise_name} {self.merchandise_size} {self.merchandise_color}')
         return super().save(*args, **kwargs)
 
+
 class MerchandiseGallery(models.Model):
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
-    merchandise = models.OneToOneField(Merchandise, on_delete=models.CASCADE, related_name='merchandise_gallery', null=True, blank=True)
+    merchandise_name = models.OneToOneField(Merchandise, on_delete=models.CASCADE, related_name='merchandise_gallery', null=True, blank=True)
+    
     image_1 = models.ImageField(upload_to='Merch Image', default='')
     image_2 = models.ImageField(upload_to='Merch Image', default='')
     image_3 = models.ImageField(upload_to='Merch Image', default='')
@@ -107,8 +112,6 @@ class UserBillingAddress(models.Model):
         return f'{self.user}'    
 # Inherits from brand
 
-class Gallery(models.Model):
-    pass
 
 class Cart(models.Model):
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
