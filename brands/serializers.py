@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Brand, Merchandise, Order, Cart, MerchandiseGallery, Leads
+from .models import Brand, Merchandise, Order, Cart, Leads
 from django.conf import settings
 
 BrandUser = settings.BRAND_USER_MODEL
@@ -31,22 +31,9 @@ class MerchandiseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Merchandise
         fields = [
-            'id','brand', 'merchandise_name', 'merchandise_size', 'labels', 'delivery_cost', 'category', 'price', 'display_image'
+            'id','brand', 'merchandise_name', 'merchandise_size', 'labels', 'delivery_cost', 'category', 'price', 'display_image',
         ]
-
-class MerchandiseGallerySerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = MerchandiseGallery
-        fields = [
-            'id',
-            'merchandise',
-            'image_1',
-            'image_2',
-             'image_3',
-             'image_4'
-        ]
-
-
+        
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order

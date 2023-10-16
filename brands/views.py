@@ -11,16 +11,12 @@ from .serializers import(
       BrandProfileSerializer,
       BrandSerializer,
       BrandUserSerializer,
-      MerchandiseGallerySerializer
+      
 )
 
 class MerchandiseViewSet(viewsets.ModelViewSet):
     queryset = Merchandise.objects.all()
     serializer_class = MerchandiseSerializer
-
-class MerchandiseGalleryViewSet(viewsets.ModelViewSet):
-    queryset = MerchandiseGallery.objects.all()
-    serializer_class = MerchandiseGallerySerializer
 
 class LeadsViewSet(viewsets.ModelViewSet):
     queryset = Leads.objects.all()

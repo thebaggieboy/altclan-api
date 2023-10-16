@@ -16,7 +16,7 @@ router.register(r'brand_profile', BrandProfileViewSet)
 router.register(r'leads', LeadsViewSet)
 router.register(r'orders', OrderViewSet)
 router.register(r'merchandises', MerchandiseViewSet)
-router.register(r'merchandise_images', MerchandiseGalleryViewSet)
+
 router.register(r'cart', CartViewSet)
 router.register(r'reviews', ReviewViewSet)
 

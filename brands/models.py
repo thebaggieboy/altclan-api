@@ -36,12 +36,16 @@ class Merchandise(models.Model):
     merchandise_name = models.CharField(max_length=250, default='')
     merchandise_color = models.CharField(max_length=250, default='')
     merchandise_size = models.CharField(max_length=250, default='')
-    #merchandise_sizes = models.CharField(max_length=250, default='', null=True, blank=True)
     display_image = models.ImageField(upload_to='Merch Image', default='')
-    gallery = models.ForeignKey('MerchandiseGallery', on_delete=models.CASCADE, null=True, blank=True)
     available_color_1 = models.CharField(max_length=250, null=True, blank=True)
     available_color_2 = models.CharField(max_length=250, null=True, blank=True)
     available_color_3 = models.CharField(max_length=250, null=True, blank=True)
+    image_1 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
+    image_2 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
+    image_3 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
+    image_4 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
+    image_5 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
+    image_6 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
     labels = models.CharField(max_length=250, choices=LABEL_DISPLAY, default='')
     price = models.CharField(max_length=250, default='')
     delivery_cost = models.CharField(max_length=250, default='', null=True, blank=True)
@@ -57,22 +61,6 @@ class Merchandise(models.Model):
         if not self.slug:
             self.slug = slugify(f'{self.brand} {self.merchandise_name} {self.merchandise_size} {self.merchandise_color}')
         return super().save(*args, **kwargs)
-
-
-class MerchandiseGallery(models.Model):
-    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
-    merchandise_name = models.OneToOneField(Merchandise, on_delete=models.CASCADE, related_name='merchandise_gallery', null=True, blank=True)
-    
-    image_1 = models.ImageField(upload_to='Merch Image', default='')
-    image_2 = models.ImageField(upload_to='Merch Image', default='')
-    image_3 = models.ImageField(upload_to='Merch Image', default='')
-    image_4 = models.ImageField(upload_to='Merch Image', default='')
-    image_5 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
-    image_6 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
-
-    def __str__(self):
-        return f'Merchandise Name : {self.merchandise}'
- 
 
 
 class Leads(models.Model):
@@ -123,7 +111,7 @@ class Cart(models.Model):
     # Show list of orders and their quantities
 
     def __str__(self):
-        return f'{self.merchandise} x ( {self.quantity} ) pcs by {self.user} '
+        return f'{self.merchandises} x ( {self.quantity} ) pcs by {self.user} '
 
 # Represent a particular product order
 class Order(models.Model): 
