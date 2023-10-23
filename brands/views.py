@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from account.models import BrandProfile
 from .models import Brand, Order, Cart, Merchandise, MerchandiseGallery, Leads
 from .serializers import(
-      OrderSerializer,
+      
       CartSerializer,
       LeadsSerializer,
       MerchandiseSerializer,
@@ -24,9 +24,7 @@ class LeadsViewSet(viewsets.ModelViewSet):
 
 
 
-class OrderViewSet(viewsets.ModelViewSet):
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
+
 
 class CartViewSet(viewsets.ModelViewSet):
     queryset = Cart.objects.all()

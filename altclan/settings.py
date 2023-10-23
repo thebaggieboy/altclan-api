@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'brands.apps.BrandsConfig',
     'account.apps.AccountConfig',
+    'transactions.apps.TransactionsConfig',
     'reviews',
     'allauth',
     'rest_framework',

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Brand, Merchandise, Cart, Order,  BillingAddress
+from .models import Brand, Merchandise, Cart,  BillingAddress
 from reviews.models import Reviews
 from account.models import BrandProfile
 
@@ -31,7 +31,7 @@ admin.site.register(Brand, BrandAdmin)
 admin.site.register(BrandProfile, BrandProfileAdmin)
 admin.site.register(Merchandise, MerchandiseAdmin)
 admin.site.register(Cart)
-admin.site.register(Order)
+
 admin.site.register(Reviews)
 
 
