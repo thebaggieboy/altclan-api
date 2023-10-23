@@ -27,14 +27,13 @@ def save_profile(sender, instance, **kwargs):
 def create_brand_profile(sender, instance, created, **kwargs):
     if created:
         BrandProfile.objects.create(user=instance)
-        Brand.objects.create(user=instance)
+        
         BillingAddress.objects.create(user=instance)
-        print("New Brand Instance has been created")
-        print("Brand Profile Created!")
+
+        print("Brand Profile & Address Created!")
 
 @receiver(post_save, sender=BrandUser)
 def save_brand_profile(sender, instance, **kwargs):
-    instance.brand.save()
     instance.brand_profile.save()
     instance.address.save()
     print("Brand Profile saved!")

@@ -7,6 +7,9 @@ from django.utils.text import slugify
 from brands.models import Brand
 from django.conf import settings
 import uuid
+from django.utils import timezone
+from brands.display import LABEL_DISPLAY, COLLECTION_DISPLAY, COMMUNITY_TYPE_DISPLAY
+from brands.choices import STATUS, GENDER, COMMUNITY_TYPE, CLOTHING_CATEGORY
 
 User = settings.AUTH_USER_MODEL
 BrandUser = settings.BRAND_USER_MODEL
@@ -239,6 +242,13 @@ class Profile(models.Model):
 class BrandProfile(models.Model):
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
     user = models.OneToOneField(BrandUser, on_delete=models.CASCADE, related_name='brand_profile', null=True, blank=True)
+    brand_name = models.CharField(max_length=250, default='')
+    brand_logo = models.ImageField(upload_to='Brand Logos', default='')
+    brand_bio = models.TextField(default='')
+    brand_type = models.CharField(choices=COMMUNITY_TYPE, default='', max_length=250)
+    date_created = models.DateTimeField(default=timezone.now())
+    slug = models.SlugField(null=True, blank=True, default='', unique=True)
+    followers = models.CharField(max_length=250, null=True, blank=True)
     display_picture = models.ImageField(upload_to='Brands/Display Picture', default='')
     merchandises = models.ManyToManyField(Merchandise)
     mobile_number = models.CharField(max_length=250, default='')

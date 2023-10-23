@@ -17,7 +17,7 @@ class BrandSerializer(serializers.HyperlinkedModelSerializer):
 class BrandProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BrandProfile
-        fields = ['id','user','display_picture',  'mobile_number',  'email_address', 'merchandises',  'billing_address', 'city', 'state', 'zip']
+        fields = ['id','user','brand_name', 'brand_bio', 'brand_logo',  'mobile_number',  'followers',  'billing_address', 'city', 'state', 'zip']
 
 
 class LeadsSerializer(serializers.HyperlinkedModelSerializer):
