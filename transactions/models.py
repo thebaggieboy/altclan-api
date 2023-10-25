@@ -15,7 +15,7 @@ STATUS = (
 class Order(models.Model): 
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    address = models.ForeignKey(BillingAddress, on_delete=models.CASCADE, related_name='transaction_address')
+    address = models.ForeignKey(BillingAddress, on_delete=models.CASCADE, related_name='billing_address')
 
     ordered = models.BooleanField(default=False)
     delivered = models.BooleanField(default=False)

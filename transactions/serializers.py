@@ -11,20 +11,20 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
 class PaymentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Payment
-        fields = ['*']
+        fields = ['stripe_charge_id', 'user', 'amount', 'status', 'timestamp']
 
 
 class CouponSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Coupon
-        fields = ['*']
+        fields = ['id', 'code', 'amount']
 
 
 
 class RefundSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Refund
-        fields = ['*']
+        fields = ['id', 'order', 'reason', 'accepted', 'email' ]
 
 
 
