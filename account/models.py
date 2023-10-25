@@ -108,7 +108,7 @@ class CustomUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    token = models.CharField(null=True, blank=True, max_length=250)
+    #token = models.CharField(null=True, blank=True, max_length=250)
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
@@ -121,9 +121,7 @@ class CustomUser(AbstractBaseUser):
     def get_full_name(self):
         # The user is identified by their email address
         return self.email
-    def get_token(self):
-        # The token is identified by their email address
-        return self.token
+
 
     def get_short_name(self):
         # The user is identified by their email address
@@ -166,7 +164,7 @@ class BrandUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    token = models.CharField(null=True, blank=True, max_length=250)
+    #token = models.CharField(null=True, blank=True, max_length=250)
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
@@ -184,9 +182,6 @@ class BrandUser(AbstractBaseUser):
         # The user is identified by their email address
         return self.email
     
-    def get_token(self):
-        # The user is identified by their email address
-        return self.token
     
     def get_username(self):
         # This user is identified by their username
