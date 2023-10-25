@@ -4,10 +4,11 @@ from django.conf import settings
 from django.dispatch import receiver
 from .models import Profile
 from account.models import BrandUser
-User = settings.AUTH_USER_MODEL
-from account.models import BrandProfile, Brand
+
+from account.models import BrandProfile
 from brands.models import UserBillingAddress, BillingAddress
 
+User = settings.AUTH_USER_MODEL
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:

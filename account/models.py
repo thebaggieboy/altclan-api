@@ -2,17 +2,19 @@ from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
-from brands.models import Merchandise
+
 from django.utils.text import slugify
-from brands.models import Brand
+
 from django.conf import settings
-import uuid
+
 from django.utils import timezone
 from brands.display import LABEL_DISPLAY, COLLECTION_DISPLAY, COMMUNITY_TYPE_DISPLAY
 from brands.choices import STATUS, GENDER, COMMUNITY_TYPE, CLOTHING_CATEGORY
 
 User = settings.AUTH_USER_MODEL
 BrandUser = settings.BRAND_USER_MODEL
+import uuid
+
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
         """
@@ -100,7 +102,7 @@ class BrandUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser):
-    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
+
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -157,7 +159,7 @@ class CustomUser(AbstractBaseUser):
     objects = UserManager()
 
 class BrandUser(AbstractBaseUser):
-    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
+    
     username = models.CharField(blank=True, null=True, max_length=25, unique=True)
     email = models.EmailField(
         verbose_name='email address',
@@ -225,6 +227,7 @@ class BrandUser(AbstractBaseUser):
 class Profile(models.Model):
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', null=True, blank=True)
+    user_name = models.CharField(max_length=250, default='')
     first_name = models.CharField(max_length=250, default='')
     last_name = models.CharField(max_length=250, default='')
     email_address = models.CharField(max_length=250, default='')
@@ -240,7 +243,7 @@ class Profile(models.Model):
         return f'Profile :  {self.user}'
 
 class BrandProfile(models.Model):
-    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
+    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)   
     user = models.OneToOneField(BrandUser, on_delete=models.CASCADE, related_name='brand_profile', null=True, blank=True)
     brand_name = models.CharField(max_length=250, default='')
     brand_logo = models.ImageField(upload_to='Brand Logos', default='')
@@ -250,7 +253,6 @@ class BrandProfile(models.Model):
     slug = models.SlugField(null=True, blank=True, default='', unique=True)
     followers = models.CharField(max_length=250, null=True, blank=True)
     display_picture = models.ImageField(upload_to='Brands/Display Picture', default='')
-    merchandises = models.ManyToManyField(Merchandise)
     mobile_number = models.CharField(max_length=250, default='')
     slug = models.SlugField(null=True, blank=True, default='')
     billing_address = models.CharField(max_length=250, default='')

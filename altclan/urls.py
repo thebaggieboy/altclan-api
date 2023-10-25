@@ -7,11 +7,11 @@ from rest_framework import routers
 from core.views import *
 from account.views import BrandUserViewSet
 from rest_framework_simplejwt import views as jwt_views
+
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'brand_users' , BrandUserViewSet)
 router.register(r'profile', ProfileViewSet)
-router.register(r'brands', BrandViewSet)
 router.register(r'brand_profile', BrandProfileViewSet)
 router.register(r'leads', LeadsViewSet)
 router.register(r'orders', OrderViewSet)

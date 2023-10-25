@@ -4,30 +4,12 @@ from django.utils import timezone
 from django.template.defaultfilters import slugify
 from .display import LABEL_DISPLAY, COLLECTION_DISPLAY, COMMUNITY_TYPE_DISPLAY
 from django.conf import settings
+
 User = settings.AUTH_USER_MODEL
 BrandUser = settings.BRAND_USER_MODEL
+
 from .choices import STATUS, GENDER, COMMUNITY_TYPE, CLOTHING_CATEGORY
-
-class Brand(models.Model):
-    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
-    user = models.OneToOneField(BrandUser, on_delete=models.CASCADE, related_name='brand', null=True, blank=True)
-    username = models.CharField(max_length=250)
-    brand_name = models.CharField(max_length=250, default='')
-    brand_logo = models.ImageField(upload_to='Brand Logos', default='')
-    brand_bio = models.TextField(default='')
-    brand_type = models.CharField(choices=COMMUNITY_TYPE, default='', max_length=250)
-    date_created = models.DateTimeField(default=timezone.now())
-    slug = models.SlugField(null=True, blank=True, default='', unique=True)
-    followers = models.CharField(max_length=250, null=True, blank=True)
-    
-    def __str__(self):
-        return f'{self.user} Brand'
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(f'{self.id}')
-        return super().save(*args, **kwargs)
-    
+from account.models import BrandProfile
 
 class BrandDashboard(models.Model):
     user = models.OneToOneField(BrandUser, on_delete=models.CASCADE, related_name='brand_dashboard', null=True, blank=True)
@@ -45,7 +27,7 @@ class BrandDashboard(models.Model):
 
 class Merchandise(models.Model):
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE,  null=True, blank=True)
+    brand = models.ForeignKey(BrandUser, on_delete=models.CASCADE,  null=True, blank=True)
     merchandise_name = models.CharField(max_length=250, default='')
     merchandise_color = models.CharField(max_length=250, default='')
     merchandise_size = models.CharField(max_length=250, default='')
@@ -58,7 +40,6 @@ class Merchandise(models.Model):
     image_3 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
     image_4 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
     image_5 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
-    image_6 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
     labels = models.CharField(max_length=250, choices=LABEL_DISPLAY, default='')
     price = models.CharField(max_length=250, default='')
     delivery_cost = models.CharField(max_length=250, default='', null=True, blank=True)
@@ -72,7 +53,7 @@ class Merchandise(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(f'{self.brand} {self.merchandise_name} {self.merchandise_size} {self.merchandise_color}')
+            self.slug = slugify(f'{self.id}')
         return super().save(*args, **kwargs)
 
 
@@ -91,7 +72,7 @@ class Leads(models.Model):
         return super().save(*args, **kwargs)
 # ProductOrder, these are the items that have been
 class BillingAddress(models.Model):
-    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
+    
     user = models.OneToOneField(BrandUser, on_delete=models.CASCADE, related_name='address', null=True, blank=True)
     street_address = models.CharField(max_length=250, default='')
     city = models.CharField(max_length=250, default='')
@@ -102,7 +83,7 @@ class BillingAddress(models.Model):
         return f'{self.user}'
     
 class UserBillingAddress(models.Model):
-    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_address', null=True, blank=True)
     street_address = models.CharField(max_length=250, default='')
     city = models.CharField(max_length=250, default='')
@@ -115,7 +96,7 @@ class UserBillingAddress(models.Model):
 
 
 class Cart(models.Model):
-    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
+    #id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     quantity = models.IntegerField(null=True, blank=True)
     merchandises = models.ManyToManyField(Merchandise)

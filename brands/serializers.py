@@ -1,18 +1,13 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Brand, Merchandise, Cart, Leads
+from .models import  Merchandise, Cart, Leads
 from django.conf import settings
-
-BrandUser = settings.BRAND_USER_MODEL
-
 from account.models import BrandProfile
 
 
+BrandUser = settings.BRAND_USER_MODEL
 
-class BrandSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Brand
-        fields = ['id', 'user', 'brand_name', 'brand_logo', 'brand_bio', 'slug', 'followers']
+
 
 class BrandProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

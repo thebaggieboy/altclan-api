@@ -36,9 +36,6 @@ class CartViewSet(viewsets.ModelViewSet):
     serializer_class = CartSerializer
 
 # Create your views here.
-class BrandViewSet(viewsets.ModelViewSet):
-    queryset = Brand.objects.all()
-    serializer_class = BrandSerializer
 
 # Create your views here.
 class BrandProfileViewSet(viewsets.ModelViewSet):
