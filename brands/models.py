@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.template.defaultfilters import slugify
 from .display import LABEL_DISPLAY, COLLECTION_DISPLAY, COMMUNITY_TYPE_DISPLAY
 from django.conf import settings
+from account.models import BrandProfile
 
 User = settings.AUTH_USER_MODEL
 BrandUser = settings.BRAND_USER_MODEL
@@ -12,8 +13,14 @@ from .choices import STATUS, GENDER, COMMUNITY_TYPE, CLOTHING_CATEGORY
 from account.models import BrandProfile
 
 class BrandDashboard(models.Model):
-    user = models.OneToOneField(BrandUser, on_delete=models.CASCADE, related_name='brand_dashboard', null=True, blank=True)
-    
+    #user = models.OneToOneField(BrandUser, on_delete=models.CASCADE, related_name='brand_dashboard', null=True, blank=True)
+    profile = models.OneToOneField(BrandProfile, on_delete=models.CASCADE, related_name='brand_dashboard', null=True, blank=True)
+    total_views = models.CharField(max_length=250, null=True, blank=True)
+    total_users = models.CharField(max_length=250, null=True, blank=True)
+    total_products = models.CharField(max_length=250, null=True, blank=True)
+    total_profit = models.CharField(max_length=250, null=True, blank=True)
+    total_revenue = models.CharField(max_length=250, null=True, blank=True)
+    total_sales = models.CharField(max_length=250, null=True, blank=True)
     
     def __str__(self):
         return f'{self.user} Dashboard'

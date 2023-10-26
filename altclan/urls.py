@@ -11,6 +11,7 @@ from rest_framework_simplejwt import views as jwt_views
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'brand_users' , BrandUserViewSet)
+router.register(r'brand_dashboard' , BrandDashboardViewSet)
 router.register(r'profile', ProfileViewSet)
 router.register(r'brand_profile', BrandProfileViewSet)
 router.register(r'leads', LeadsViewSet)

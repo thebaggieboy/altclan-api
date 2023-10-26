@@ -1,7 +1,9 @@
 
 from rest_framework import viewsets
 from .serializers import UserSerializer, ProfileSerializer, BrandUserSerializer
+from brands.serializers import BrandDashboardSerializer
 from .models import Profile, CustomUser, BrandUser
+from brands.models import BrandDashboard
 
 from django.conf import settings
 #BrandUser = settings.BRAND_USER_MODEL
@@ -19,3 +21,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
 class BrandUserViewSet(viewsets.ModelViewSet):
     queryset = BrandUser.objects.all()
     serializer_class = BrandUserSerializer
+
+class BrandDashboardViewSet(viewsets.ModelViewSet):
+    queryset = BrandDashboard.objects.all()
+    serializer_class = BrandDashboardSerializer

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import  Merchandise, Cart, Leads
+from .models import  Merchandise, Cart, Leads, BrandDashboard
 from django.conf import settings
 from account.models import BrandProfile
 
@@ -13,6 +13,12 @@ class BrandProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BrandProfile
         fields = ['id','user','brand_name', 'brand_bio', 'brand_logo',  'mobile_number',  'followers',  'billing_address', 'city', 'state', 'zip']
+
+class BrandDashboardSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = BrandDashboard
+        fields = ['profile','total_views', 'total_products']
+
 
 
 class LeadsSerializer(serializers.HyperlinkedModelSerializer):

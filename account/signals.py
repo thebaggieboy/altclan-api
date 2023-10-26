@@ -6,7 +6,7 @@ from .models import Profile
 from account.models import BrandUser
 
 from account.models import BrandProfile
-from brands.models import UserBillingAddress, BillingAddress
+from brands.models import UserBillingAddress, BillingAddress, BrandDashboard
 
 User = settings.AUTH_USER_MODEL
 @receiver(post_save, sender=User)
@@ -23,11 +23,12 @@ def save_profile(sender, instance, **kwargs):
     print("Profile saved!")
     print('User address saved')
 
-# If a new brand is created, silmultaneously create a profile for the brand.
+# If a new brand is created, silmultaneously create a profile & dashboard for the brand.
 @receiver(post_save, sender=BrandUser)
 def create_brand_profile(sender, instance, created, **kwargs):
     if created:
         BrandProfile.objects.create(user=instance)
+        BrandDashboard.objects.create(profile=instance)
         
         BillingAddress.objects.create(user=instance)
 
@@ -36,6 +37,7 @@ def create_brand_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=BrandUser)
 def save_brand_profile(sender, instance, **kwargs):
     instance.brand_profile.save()
+    instance.brand_dashboard.save()
     instance.address.save()
     print("Brand Profile saved!")
     print("Brand Address saved!")
