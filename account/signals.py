@@ -29,7 +29,7 @@ def save_profile(sender, instance, **kwargs):
 def create_brand_profile(sender, instance, created, **kwargs):
     if created:
         BrandProfile.objects.create(user=instance)
-        BrandDashboard.objects.create(profile=instance)
+        BrandDashboard.objects.create(user=instance)
         
         BillingAddress.objects.create(user=instance)
 

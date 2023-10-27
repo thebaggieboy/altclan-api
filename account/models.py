@@ -165,8 +165,7 @@ class BrandUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    #profile = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', null=True, blank=True)
-    #token = models.CharField(null=True, blank=True, max_length=250)
+
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser

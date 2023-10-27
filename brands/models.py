@@ -13,8 +13,8 @@ from .choices import STATUS, GENDER, COMMUNITY_TYPE, CLOTHING_CATEGORY
 from account.models import BrandProfile
 
 class BrandDashboard(models.Model):
-    #user = models.OneToOneField(BrandUser, on_delete=models.CASCADE, related_name='brand_dashboard', null=True, blank=True)
-    profile = models.OneToOneField(BrandProfile, on_delete=models.CASCADE, related_name='brand_dashboard', null=True, blank=True)
+    user = models.OneToOneField(BrandUser, on_delete=models.CASCADE, related_name='brand_dashboard', null=True, blank=True)
+    #profile = models.OneToOneField(BrandProfile, on_delete=models.CASCADE, related_name='brand_dashboard', null=True, blank=True)
     total_views = models.CharField(max_length=250, null=True, blank=True)
     total_users = models.CharField(max_length=250, null=True, blank=True)
     total_products = models.CharField(max_length=250, null=True, blank=True)
@@ -25,10 +25,6 @@ class BrandDashboard(models.Model):
     def __str__(self):
         return f'{self.user} Dashboard'
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.user = slugify(f'{self.user}')
-        return super().save(*args, **kwargs)
 
 
 
