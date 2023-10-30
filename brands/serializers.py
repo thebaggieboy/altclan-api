@@ -12,12 +12,12 @@ BrandUser = settings.BRAND_USER_MODEL
 class BrandProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BrandProfile
-        fields = ['id','user','brand_name', 'brand_bio', 'brand_logo',  'mobile_number',  'followers',  'billing_address', 'city', 'state', 'zip']
+        fields = ['id','user','brand_name', 'brand_bio', 'brand_logo', 'brand_type', 'mobile_number',  'followers',  'billing_address', 'city', 'state', 'zip']
 
 class BrandDashboardSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BrandDashboard
-        fields = ['profile','total_views', 'total_products']
+        fields = ['total_views', 'total_products', 'total_users', 'total_profit']
 
 
 
@@ -32,7 +32,7 @@ class MerchandiseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Merchandise
         fields = [
-            'id','brand', 'merchandise_name', 'merchandise_size', 'labels', 'delivery_cost', 'category', 'price', 'display_image',
+            'id','brand', 'merchandise_name', 'merchandise_size', 'labels', 'delivery_cost', 'category', 'merchandise_description', 'merchandise_details', 'price', 'display_image',
         ]
         
 

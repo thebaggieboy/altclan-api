@@ -221,7 +221,7 @@ class BrandUser(AbstractBaseUser):
 
 
 class Profile(models.Model):
-    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
+
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', null=True, blank=True)
     user_name = models.CharField(max_length=250, default='')
     first_name = models.CharField(max_length=250, default='')
@@ -239,7 +239,7 @@ class Profile(models.Model):
         return f'Profile :  {self.user}'
 
 class BrandProfile(models.Model):
-    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)   
+ 
     user = models.OneToOneField(BrandUser, on_delete=models.CASCADE, related_name='brand_profile', null=True, blank=True)
     brand_name = models.CharField(max_length=250, default='')
     brand_logo = models.ImageField(upload_to='Brand Logos', default='')
@@ -247,7 +247,7 @@ class BrandProfile(models.Model):
     brand_type = models.CharField(choices=COMMUNITY_TYPE, default='', max_length=250)
     date_created = models.DateTimeField(default=timezone.now())
     slug = models.SlugField(null=True, blank=True, default='', unique=True)
-    followers = models.CharField(max_length=250, null=True, blank=True)
+    followers = models.ManyToManyField('Followers')
     display_picture = models.ImageField(upload_to='Brands/Display Picture', default='')
     mobile_number = models.CharField(max_length=250, default='')
     slug = models.SlugField(null=True, blank=True, default='')
@@ -265,3 +265,9 @@ class BrandProfile(models.Model):
     def __str__(self):
         return f'{self.user} Profile'
 
+
+class Followers(models.Model):
+    user = models.OneToOneField(BrandUser, on_delete=models.CASCADE, related_name='brand_followers', null=True, blank=True)
+     
+    def __str__(self):
+        return f'{self.user} Followers'

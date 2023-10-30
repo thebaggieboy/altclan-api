@@ -12,6 +12,7 @@ BrandUser = settings.BRAND_USER_MODEL
 from .choices import STATUS, GENDER, COMMUNITY_TYPE, CLOTHING_CATEGORY
 from account.models import BrandProfile
 
+
 class BrandDashboard(models.Model):
     user = models.OneToOneField(BrandUser, on_delete=models.CASCADE, related_name='brand_dashboard', null=True, blank=True)
     #profile = models.OneToOneField(BrandProfile, on_delete=models.CASCADE, related_name='brand_dashboard', null=True, blank=True)
@@ -31,9 +32,12 @@ class BrandDashboard(models.Model):
 class Merchandise(models.Model):
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
     brand = models.ForeignKey(BrandUser, on_delete=models.CASCADE,  null=True, blank=True)
+    #brand_name = models.CharField(max_length=250, null=True, blank=True)
     merchandise_name = models.CharField(max_length=250, default='')
     merchandise_color = models.CharField(max_length=250, default='')
     merchandise_size = models.CharField(max_length=250, default='')
+    merchandise_description = models.TextField(default='')
+    merchandise_details = models.TextField(default='')
     display_image = models.ImageField(upload_to='Merch Image', default='')
     available_color_1 = models.CharField(max_length=250, null=True, blank=True)
     available_color_2 = models.CharField(max_length=250, null=True, blank=True)
@@ -44,9 +48,9 @@ class Merchandise(models.Model):
     image_4 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
     image_5 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
     labels = models.CharField(max_length=250, choices=LABEL_DISPLAY, default='')
-    price = models.CharField(max_length=250, default='')
-    delivery_cost = models.CharField(max_length=250, default='', null=True, blank=True)
-    discount = models.CharField(max_length=250, default='', null=True, blank=True)
+    price = models.IntegerField()
+    delivery_cost = models.IntegerField()
+    discount = models.IntegerField()
     category = models.CharField(choices=CLOTHING_CATEGORY, default='', null=True, blank=True, max_length=250)
     slug = models.SlugField()
     date_created = models.DateTimeField(default=timezone.now())

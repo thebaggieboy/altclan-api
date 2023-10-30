@@ -12,4 +12,3 @@ class UserFactory(DjangoModelFactory):
         #django_get_or_create('email')
 
 
-
