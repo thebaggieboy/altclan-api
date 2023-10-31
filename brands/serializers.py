@@ -12,7 +12,7 @@ BrandUser = settings.BRAND_USER_MODEL
 class BrandProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BrandProfile
-        fields = ['id','user','brand_name', 'brand_bio', 'brand_logo', 'brand_type', 'mobile_number',  'followers',  'billing_address', 'city', 'state', 'zip']
+        fields = ['id','user','brand_name', 'brand_bio', 'brand_logo', 'brand_type', 'mobile_number',    'billing_address', 'city', 'state', 'zip']
 
 class BrandDashboardSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
