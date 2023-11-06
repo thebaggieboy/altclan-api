@@ -30,10 +30,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
     'brands.apps.BrandsConfig',
-    'account.apps.AccountConfig',
+    'accounts.apps.AccountConfig',
     'transactions.apps.TransactionsConfig',
     'reviews',
     'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
@@ -149,7 +152,7 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ],
@@ -158,13 +161,40 @@ REST_FRAMEWORK = {
     ],
    
 }
+
+REST_AUTH = {
+    
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'token',
+    'JWT_AUTH_REFRESH_COOKIE': 'refresh-token',
+}
+AUTHENTICATION_BACKENDS = ( 
+	'django.contrib.auth.backends.ModelBackend', 
+	'allauth.account.auth_backends.AuthenticationBackend', 
+)
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOWED_ORIGINS = [
+     "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://altclan-brands-api:8000",
+    "http://127.0.0.1:8000",
+]
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
-AUTH_USER_MODEL = 'account.CustomUser'
-BRAND_USER_MODEL='account.BrandUser'
+AUTH_USER_MODEL = 'accounts.CustomUser'
+BRAND_USER_MODEL='accounts.BrandUser'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION ='optional'
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True

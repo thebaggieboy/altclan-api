@@ -1,7 +1,7 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from account.models import BrandProfile
+from accounts.models import BrandProfile
 from .models import  Merchandise
 
 

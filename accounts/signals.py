@@ -3,9 +3,9 @@ from django.db.models.signals import post_save
 from django.conf import settings
 from django.dispatch import receiver
 from .models import Profile
-from account.models import BrandUser
+from accounts.models import BrandUser
 from .models import CustomUser
-from account.models import BrandProfile
+from accounts.models import BrandProfile
 from brands.models import UserBillingAddress, BillingAddress, BrandDashboard
 
 User = settings.AUTH_USER_MODEL

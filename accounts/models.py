@@ -2,17 +2,15 @@ from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
-
 from django.utils.text import slugify
-
 from django.conf import settings
-
 from django.utils import timezone
 from brands.display import LABEL_DISPLAY, COLLECTION_DISPLAY, COMMUNITY_TYPE_DISPLAY
 from brands.choices import STATUS, GENDER, COMMUNITY_TYPE, CLOTHING_CATEGORY
-
+from .choices import *
 User = settings.AUTH_USER_MODEL
 BrandUser = settings.BRAND_USER_MODEL
+
 import uuid
 
 class UserManager(BaseUserManager):
@@ -102,14 +100,21 @@ class BrandUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser):
-
+    
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
         unique=True,
     )
-    #user_profile = models.OneToOneField('Profile', on_delete=models.CASCADE, related_name='profile', null=True, blank=True)
-    #token = models.CharField(null=True, blank=True, max_length=250)
+    #user_type = models.CharField(choices=USER_TYPE, default='CustomUser', max_length=250)
+    first_name = models.CharField(max_length=250, default='')
+    last_name = models.CharField(max_length=250, default='')
+    mobile_number = models.CharField(max_length=250, default='')
+    display_picture = models.ImageField(upload_to='Display Picture', default='')  
+    address = models.CharField(max_length=250, default='')
+    city = models.CharField(max_length=250, default='')
+    state = models.CharField(max_length=250, default='')
+    zip = models.CharField(max_length=250, default='')
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
@@ -159,13 +164,22 @@ class CustomUser(AbstractBaseUser):
 
 class BrandUser(AbstractBaseUser):
     
-    username = models.CharField(blank=True, null=True, max_length=25, unique=True)
+    #username = models.CharField(blank=True, null=True, max_length=25, unique=True)
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
         unique=True,
     )
-
+    brand_name = models.CharField(max_length=250, default='')
+    brand_logo = models.ImageField(upload_to='Brand Logos', default='')
+    brand_bio = models.TextField(default='')
+    brand_type = models.CharField(choices=COMMUNITY_TYPE, default='', max_length=250)
+    mobile_number = models.CharField(max_length=250, default='')
+    slug = models.SlugField(null=True, blank=True, default='')
+    billing_address = models.CharField(max_length=250, default='')
+    city = models.CharField(max_length=250, default='')
+    state = models.CharField(max_length=250, default='')
+    zip = models.CharField(max_length=250, default='')
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
@@ -223,38 +237,14 @@ class BrandUser(AbstractBaseUser):
 class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', null=True, blank=True)
-    user_name = models.CharField(max_length=250, default='')
-    first_name = models.CharField(max_length=250, default='')
-    last_name = models.CharField(max_length=250, default='')
-    email_address = models.CharField(max_length=250, default='')
-    mobile_number = models.CharField(max_length=250, default='')
-    display_picture = models.ImageField(upload_to='Display Picture', default='')
-    
-    billing_address = models.CharField(max_length=250, default='')
-    city = models.CharField(max_length=250, default='')
-    state = models.CharField(max_length=250, default='')
-    zip = models.CharField(max_length=250, default='')
-
+    date_created = models.DateTimeField(default=timezone.now())
     def __str__(self):
         return f'Profile :  {self.user}'
 
 class BrandProfile(models.Model):
  
     user = models.OneToOneField(BrandUser, on_delete=models.CASCADE, related_name='brand_profile', null=True, blank=True)
-    brand_name = models.CharField(max_length=250, default='')
-    brand_logo = models.ImageField(upload_to='Brand Logos', default='')
-    brand_bio = models.TextField(default='')
-    brand_type = models.CharField(choices=COMMUNITY_TYPE, default='', max_length=250)
     date_created = models.DateTimeField(default=timezone.now())
-    slug = models.SlugField(null=True, blank=True, default='', unique=True)
-    followers = models.ManyToManyField('Followers')
-    display_picture = models.ImageField(upload_to='Brands/Display Picture', default='')
-    mobile_number = models.CharField(max_length=250, default='')
-    slug = models.SlugField(null=True, blank=True, default='')
-    billing_address = models.CharField(max_length=250, default='')
-    city = models.CharField(max_length=250, default='')
-    state = models.CharField(max_length=250, default='')
-    zip = models.CharField(max_length=250, default='')
 
 
     def save(self, *args, **kwargs):
@@ -264,6 +254,7 @@ class BrandProfile(models.Model):
     
     def __str__(self):
         return f'{self.user} Profile'
+
 
 
 class Followers(models.Model):

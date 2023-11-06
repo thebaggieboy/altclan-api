@@ -4,13 +4,13 @@ from django.utils import timezone
 from django.template.defaultfilters import slugify
 from .display import LABEL_DISPLAY, COLLECTION_DISPLAY, COMMUNITY_TYPE_DISPLAY
 from django.conf import settings
-from account.models import BrandProfile
+from accounts.models import BrandProfile
 
 User = settings.AUTH_USER_MODEL
 BrandUser = settings.BRAND_USER_MODEL
 
 from .choices import STATUS, GENDER, COMMUNITY_TYPE, CLOTHING_CATEGORY
-from account.models import BrandProfile
+from accounts.models import BrandProfile
 
 
 class BrandDashboard(models.Model):
@@ -31,8 +31,8 @@ class BrandDashboard(models.Model):
 
 class Merchandise(models.Model):
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
-    brand = models.ForeignKey(BrandUser, on_delete=models.CASCADE,  null=True, blank=True)
-    #brand_name = models.CharField(max_length=250, null=True, blank=True)
+    #brand = models.ForeignKey(BrandUser, on_delete=models.CASCADE,  null=True, blank=True)
+    brand_name = models.CharField(max_length=250, null=True, blank=True)
     merchandise_name = models.CharField(max_length=250, default='')
     merchandise_color = models.CharField(max_length=250, default='')
     merchandise_size = models.CharField(max_length=250, default='')

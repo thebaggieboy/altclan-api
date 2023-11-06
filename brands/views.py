@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.conf import settings
 from rest_framework import viewsets
-from account.models import BrandProfile
+from accounts.models import BrandProfile
 from .models import  Cart, Merchandise, Leads, BrandDashboard
 from transactions.models import *
 
