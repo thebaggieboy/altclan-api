@@ -184,9 +184,9 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
      "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "http://localhost:8000",
-    "http://altclan-brands-api",
-    "http://127.0.0.1:8000",
+    "http://altclan-brands-api.onrender.com/",
+    "https://altclan-api-v1.onrender.com/",
+    "https://altclanui.vercel.app/"
 ]
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
