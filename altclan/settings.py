@@ -161,7 +161,8 @@ REST_FRAMEWORK = {
     ],
    
 }
-
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True
 REST_AUTH = {
     
     'USE_JWT': True,
