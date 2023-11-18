@@ -165,6 +165,8 @@ SESSION_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = ['https://altclanui.vercel.app/', 'http://localhost:3000', 'http://127.0.0.1:3000']
+
 REST_AUTH = {
     
     'USE_JWT': True,
