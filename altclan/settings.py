@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-#ioqb6nvy+hwu5(%r@(dv!6zztc7vb*+j63uie9ruvhihr5*oe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['altclanui.vercel.app', 'altclan-api-v1.onrender.com', 'localhost:3000', '127.0.0.1:3000']
 
 
 # Application definition
@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'altclan.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+# docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
