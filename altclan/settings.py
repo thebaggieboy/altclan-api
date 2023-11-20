@@ -163,10 +163,10 @@ REST_FRAMEWORK = {
     ],
    
 }
-SESSION_COOKIE_SAMESITE = 'None'
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = 'None'
-CSRF_COOKIE_SECURE = True
+#SESSION_COOKIE_SAMESITE = 'None'
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SAMESITE = 'None'
+#CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = ['https://altclanui.vercel.app/', 'https://altclan-api-v1.onrender.com', 'http://localhost:3000', 'http://127.0.0.1:3000']
 
 REST_AUTH = {
