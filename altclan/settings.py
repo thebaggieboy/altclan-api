@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-#ioqb6nvy+hwu5(%r@(dv!6zztc7vb*+j63uie9ruvhihr5*oe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['altclanui.vercel.app', 'altclan-api-v1.onrender.com', 'localhost:3000', '127.0.0.1:3000']
+ALLOWED_HOSTS = ['altclanui.vercel.app', 'altclan-api-v1.onrender.com', 'localhost:3000', '127.0.0.1:3000', 'localhost:8000/', '127.0.0.1:8000/']
 
 
 # Application definition
@@ -155,7 +155,7 @@ REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
         #'rest_framework.authentication.BasicAuthentication',
     ],
      'DEFAULT_PERMISSION_CLASSES': [
@@ -163,11 +163,11 @@ REST_FRAMEWORK = {
     ],
    
 }
-#SESSION_COOKIE_SAMESITE = 'None'
-#SESSION_COOKIE_SECURE = True
-#CSRF_COOKIE_SAMESITE = 'None'
-#CSRF_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ['https://altclanui.vercel.app/', 'https://altclan-api-v1.onrender.com', 'http://localhost:3000', 'http://127.0.0.1:3000']
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = ['https://altclanui.vercel.app/', 'https://altclan-api-v1.onrender.com', 'http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:8000/', 'http://127.0.0.1:8000/']
 
 REST_AUTH = {
     
