@@ -5,7 +5,7 @@ from .models import Profile, CustomUser, BrandUser
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'email', 'first_name', 'last_name', 'mobile_number', 'display_picture']
+        fields = ['id', 'user_type', 'email', 'first_name', 'last_name', 'mobile_number', 'display_picture']
 
 class BrandUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
