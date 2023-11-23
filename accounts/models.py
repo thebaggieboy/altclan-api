@@ -106,7 +106,7 @@ class CustomUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    user_type = models.CharField(max_length=250, default='user')
+    user_type = models.CharField(max_length=250, default='user',choices=USER_TYPE)
     first_name = models.CharField(max_length=250, default='')
     last_name = models.CharField(max_length=250, default='')
     mobile_number = models.CharField(max_length=250, default='')
