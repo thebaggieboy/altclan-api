@@ -4,14 +4,14 @@ from .models import *
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
-        fields = ['id','order_date', 'ordered', 'delivered']
+        fields = ['id','order_date', 'ordered', 'delivered', 'tracking_number', 'number_of_items']
 
 
 
 class PaymentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Payment
-        fields = ['stripe_charge_id', 'user', 'amount', 'status', 'timestamp']
+        fields = ['paystack_charge_id', 'amount', 'status', 'timestamp']
 
 
 class CouponSerializer(serializers.HyperlinkedModelSerializer):

@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-#ioqb6nvy+hwu5(%r@(dv!6zztc7vb*+j63uie9ruvhihr5*oe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['altclanui.vercel.app', 'altclan-api-v1.onrender.com', 'localhost:3000', '127.0.0.1:3000', 'localhost:8000/', '127.0.0.1:8000/']
+ALLOWED_HOSTS = ['altclanui.vercel.app', 'altclan-api-v1.onrender.com', 'localhost', '127.0.0.1',]
 
 
 # Application definition
