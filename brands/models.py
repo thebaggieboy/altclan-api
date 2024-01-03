@@ -22,7 +22,7 @@ class BrandDashboard(models.Model):
     total_profit = models.CharField(max_length=250, null=True, blank=True)
     total_revenue = models.CharField(max_length=250, null=True, blank=True)
     total_sales = models.CharField(max_length=250, null=True, blank=True)
-    
+    total_orders = models.CharField(max_length=250, null=True, blank=True)
     def __str__(self):
         return f'{self.user} Dashboard'
 

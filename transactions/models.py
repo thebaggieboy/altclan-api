@@ -13,15 +13,9 @@ STATUS = (
     ('C', 'Completed'),
 )
 
-from django.conf import settings
-
 User = settings.AUTH_USER_MODEL
-RANDOM_ORDER_ID = get_random_string(length=8)
+RANDOM_ORDER_ID = get_random_string(length=12)
 
-STATUS = (
-    ('P', 'Pending'),
-    ('C', 'Completed'),
-)
 
 # Create your models here.
 class Order(models.Model): 
@@ -30,6 +24,7 @@ class Order(models.Model):
     #address = models.ForeignKey(BillingAddress, on_delete=models.CASCADE)
     tracking_number = models.CharField(max_length=250, default=get_random_string(length=12))
     number_of_items = models.IntegerField(null=True)
+    
     ordered = models.BooleanField(default=False)
     delivered = models.BooleanField(default=False)
     order_date = models.DateTimeField(default=timezone.now())
