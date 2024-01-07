@@ -19,12 +19,14 @@ RANDOM_ORDER_ID = get_random_string(length=12)
 
 # Create your models here.
 class Order(models.Model): 
-    #id = models.UUIDField(primary_key = True, default = uuid.uuid4().hex, editable = False)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    #address = models.ForeignKey(BillingAddress, on_delete=models.CASCADE)
+    name_of_item = models.CharField(max_length=250, blank=True)
+    user_email = models.CharField(max_length=250, blank=True)
+    name_of_brand = models.CharField(max_length=250, blank=True)
+    amount_per_item = models.CharField(max_length=250, blank=True)
+    quantity = models.CharField(max_length=250, blank=True)
     tracking_number = models.CharField(max_length=250, default=get_random_string(length=12))
     number_of_items = models.IntegerField(null=True)
-    
+    address = models.CharField(max_length=250, blank=True)
     ordered = models.BooleanField(default=False)
     delivered = models.BooleanField(default=False)
     order_date = models.DateTimeField(default=timezone.now())
