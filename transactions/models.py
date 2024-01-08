@@ -19,10 +19,12 @@ RANDOM_ORDER_ID = get_random_string(length=12)
 
 # Create your models here.
 class Order(models.Model): 
+    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
     name_of_item = models.CharField(max_length=250, blank=True)
     user_email = models.CharField(max_length=250, blank=True)
     name_of_brand = models.CharField(max_length=250, blank=True)
     amount_per_item = models.CharField(max_length=250, blank=True)
+    total_amount = models.IntegerField()
     quantity = models.CharField(max_length=250, blank=True)
     tracking_number = models.CharField(max_length=250, default=get_random_string(length=12))
     number_of_items = models.IntegerField(null=True)
@@ -41,7 +43,7 @@ class Payment(models.Model):
     order = models.OneToOneField('Order', models.CASCADE, null=True, blank=True, related_name='user_payment')
     paystack_charge_id = models.CharField(max_length=50, default='', null=True, blank=True)
     amount = models.FloatField()
-    status = models.CharField(max_length=250, choices=STATUS, default='P', null=True, blank=True)
+    status = models.CharField(max_length=250, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
  
