@@ -6,6 +6,9 @@ from .display import LABEL_DISPLAY, COLLECTION_DISPLAY, COMMUNITY_TYPE_DISPLAY
 from django.conf import settings
 from accounts.models import BrandProfile
 
+
+from django.contrib.postgres.fields import ArrayField
+
 User = settings.AUTH_USER_MODEL
 BrandUser = settings.BRAND_USER_MODEL
 
@@ -113,5 +116,17 @@ class Cart(models.Model):
 
     def __str__(self):
         return f'{self.merchandises} x ( {self.quantity} ) pcs by {self.user} '
+
+
+class WishList(models.Model):
+    #id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    user_email = models.OneToOneField(User, on_delete=models.CASCADE, related_name='reiews', null=True, blank=True)
+   
+    quantity = models.IntegerField(null=True, blank=True)
+    merchandises = ArrayField(models.CharField(max_length=250),blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.merchandises} x ( {self.quantity} ) pcs by {self.user_email} '
 
 # Represent a particular product order
