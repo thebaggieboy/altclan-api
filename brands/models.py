@@ -119,9 +119,8 @@ class Cart(models.Model):
 
 
 class WishList(models.Model):
-    #id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    user_email = models.OneToOneField(User, on_delete=models.CASCADE, related_name='reiews', null=True, blank=True)
+
+    user_email = models.OneToOneField(User, on_delete=models.CASCADE, related_name='wishlist', null=True, blank=True)
    
     quantity = models.IntegerField(null=True, blank=True)
     merchandises = ArrayField(models.CharField(max_length=250),blank=True, null=True)
