@@ -19,7 +19,7 @@ RANDOM_ORDER_ID = get_random_string(length=12)
 
 # Create your models here.
 class Order(models.Model): 
-    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
+
     name_of_item = models.CharField(max_length=250, blank=True)
     user_email = models.CharField(max_length=250, blank=True)
     name_of_brand = models.CharField(max_length=250, blank=True)
