@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-#ioqb6nvy+hwu5(%r@(dv!6zztc7vb*+j63uie9ruvhihr5*oe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['altclanui.vercel.app', 'altclan-api-v1.onrender.com', 'localhost', '127.0.0.1',]
+ALLOWED_HOSTS = ['altclanui.vercel.app', 'altclan-api-v1.onrender.com', 'localhost', '127.0.0.1', 'altclan.store']
 
 
 # Application definition
@@ -172,7 +172,7 @@ SESSION_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ['https://altclanui.vercel.app']
+CSRF_TRUSTED_ORIGINS = ['https://altclanui.vercel.app', 'altclanui.vercel.app', 'https://altclan.store']
 
 REST_AUTH = {
     
@@ -202,7 +202,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://altclan-brands-api.onrender.com",
     "https://altclan-api-v1.onrender.com",
-    "https://altclanui.vercel.app"
+    "https://altclanui.vercel.app",
+    'altclanui.vercel.app'
+    'https://altclan.store'
+    
 ]
 
 
