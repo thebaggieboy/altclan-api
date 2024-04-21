@@ -1,7 +1,7 @@
 import os
 from datetime import timedelta
 from pathlib import Path
-
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'altclan.wsgi.application'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'altclan_xiq2',
-       'USER': 'altclan_xiq2_user',
-       'PASSWORD': 'yaOQb565wimzTSrDaf61BiJzi8FIi0lQ',
-       'HOST': 'dpg-cnlgp6vsc6pc73cdi92g-a.oregon-postgres.render.com',
+       'NAME':os.getenv('DATABASE_NAME'),
+       'USER':os.getenv('USER'),
+       'PASSWORD':os.getenv('PASSWORD'),
+       'HOST':os.getenv('HOST'),
        'PORT': '5432',
    }
 }
@@ -200,11 +200,11 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "http://altclan-brands-api.onrender.com",
-    "https://altclan-api-v1.onrender.com",
-    "https://altclanui.vercel.app",
-    'altclanui.vercel.app'
-    'https://altclan.store'
+    "http://altclan-brands-api.onrender.com/",
+    "https://altclan-api-v1.onrender.com/",
+    "https://altclanui.vercel.app/",
+    'altclanui.vercel.app/'
+    'https://altclan.store/'
     'https://altclanstore.vercel.app/'
     
 ]
