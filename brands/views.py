@@ -1,25 +1,16 @@
 from django.shortcuts import render
 from django.conf import settings
 from rest_framework import viewsets
-from accounts.models import BrandProfile
-from .models import  Cart, Merchandise, Leads, BrandDashboard
-from transactions.models import *
+from accounts.models import BrandProfile, BrandUser
+from .models import  WishList, Merchandise, Leads, BrandDashboard
 
-from .serializers import(
-      
-      CartSerializer,
-      LeadsSerializer,
-      MerchandiseSerializer,
-      BrandProfileSerializer,
-      BrandSerializer,
-      BrandUserSerializer,
-      BrandDashboardSerializer
-      
-)
-
+from .serializers import *
+ 
 class MerchandiseViewSet(viewsets.ModelViewSet):
-    queryset = Merchandise.objects.all()
+    queryset = Merchandise.objects.all().order_by('-date_created').values()
     serializer_class = MerchandiseSerializer
+    #order_by = ['date_created']
+
 
 class LeadsViewSet(viewsets.ModelViewSet):
     queryset = Leads.objects.all()
@@ -27,11 +18,6 @@ class LeadsViewSet(viewsets.ModelViewSet):
 
 
 
-
-
-class CartViewSet(viewsets.ModelViewSet):
-    queryset = Cart.objects.all()
-    serializer_class = CartSerializer
 
 # Create your views here.
 class BrandDashboardViewSet(viewsets.ModelViewSet):

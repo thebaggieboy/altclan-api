@@ -31,20 +31,19 @@ class BrandDashboard(models.Model):
 
 
 
-
 class Merchandise(models.Model):
-    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
-    #brand = models.ForeignKey(BrandUser, on_delete=models.CASCADE,  null=True, blank=True)
     brand_name = models.CharField(max_length=250, null=True, blank=True)
     merchandise_name = models.CharField(max_length=250, default='')
     merchandise_color = models.CharField(max_length=250, default='')
-    merchandise_size = models.CharField(max_length=250, default='')
+    size_type = models.CharField(default='', null=True, blank=True, max_length=250)
+    available_sizes = ArrayField(models.CharField(max_length=250), default=list)
+    available_colors = ArrayField(models.CharField(max_length=250), default=list)
+    merchandise_type = models.CharField(default='', null=True, blank=True, max_length=250)
     merchandise_description = models.TextField(default='')
     merchandise_details = models.TextField(default='')
-    display_image = models.ImageField(upload_to='Merch Image', default='')
-    available_color_1 = models.CharField(max_length=250, null=True, blank=True)
-    available_color_2 = models.CharField(max_length=250, null=True, blank=True)
-    available_color_3 = models.CharField(max_length=250, null=True, blank=True)
+    merchandise_gender = models.CharField( default='', null=True, blank=True, max_length=250)
+    display_image = models.ImageField(upload_to='Display Picture', default='') 
+    #display_image = models.URLField()
     image_1 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
     image_2 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
     image_3 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
@@ -52,9 +51,9 @@ class Merchandise(models.Model):
     image_5 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
     labels = models.CharField(max_length=250, choices=LABEL_DISPLAY, default='')
     price = models.IntegerField(null=True)
-    delivery_cost = models.IntegerField(null=True)
-    discount = models.IntegerField(null=True)
-    category = models.CharField(choices=COLLECTION_DISPLAY, default='', null=True, blank=True, max_length=250)
+    delivery_cost = models.FloatField(null=True, default=0.00)
+    discount = models.FloatField(null=True, default=0.00)
+    
     slug = models.SlugField()
     date_created = models.DateTimeField(default=timezone.now())
 
@@ -65,6 +64,7 @@ class Merchandise(models.Model):
         if not self.slug:
             self.slug = slugify(f'{self.id}')
         return super().save(*args, **kwargs)
+
 
 
 class Leads(models.Model):

@@ -6,18 +6,19 @@ from django.conf.urls.static import static
 from rest_framework import routers
 from core.views import *
 from accounts.views import *
+#from brands.views import *
+
 from rest_framework_simplejwt import views as jwt_views
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
-router.register(r'profile', ProfileViewSet)
-#router.register(r'leads', LeadsViewSet)
+router.register(r'brand_users', BrandUserViewSet)
+router.register(r'merchandises', MerchandiseViewSet)
+router.register(r'user_profile', ProfileViewSet)
 router.register(r'orders', OrderViewSet)
 router.register(r'payments', PaymentViewSet)
 router.register(r'coupons', CouponViewSet)
 router.register(r'refund', RefundViewSet)
-#router.register(r'merchandises', MerchandiseViewSet)
-#router.register(r'cart', CartViewSet)
 router.register(r'reviews', ReviewViewSet)
 
 urlpatterns = [

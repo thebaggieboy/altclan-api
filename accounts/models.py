@@ -247,11 +247,6 @@ class BrandProfile(models.Model):
     date_created = models.DateTimeField(default=timezone.now())
 
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(f'{self.user}')
-        return super().save(*args, **kwargs)
-    
     def __str__(self):
         return f'{self.user} Profile'
 

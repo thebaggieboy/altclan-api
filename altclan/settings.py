@@ -182,7 +182,7 @@ REST_AUTH = {
     'USE_JWT': True,
     'JWT_AUTH_COOKIE': 'token',
     'JWT_AUTH_REFRESH_COOKIE': 'refresh-token',
-    'JWT_AUTH_COOKIE_USE_CSRF':False,
+    'JWT_AUTH_COOKIE_USE_CSRF':True,
     'JWT_AUTH_SAMESITE': 'None',
     'JWT_AUTH_SECURE': True,
     'JWT_AUTH_HTTPONLY': True,

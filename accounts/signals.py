@@ -14,15 +14,13 @@ def create_profile(sender, instance, created, **kwargs):
     if created:
         
         Profile.objects.create(user=instance)
-        UserBillingAddress.objects.create(user=instance)
         print("New user profile has been created")
 
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
     instance.profile.save()
-    instance.user_address.save()
     print("Profile saved!")
-    print('User address saved')
+   
 
 # If a new brand is created, silmultaneously create a profile & dashboard for the brand.
 @receiver(post_save, sender=BrandUser)
@@ -31,15 +29,14 @@ def create_brand_profile(sender, instance, created, **kwargs):
         BrandProfile.objects.create(user=instance)
         BrandDashboard.objects.create(user=instance)
         
-        BillingAddress.objects.create(user=instance)
-
+   
         print("Brand Profile & Address Created!")
 
 @receiver(post_save, sender=BrandUser)
 def save_brand_profile(sender, instance, **kwargs):
     instance.brand_profile.save()
     instance.brand_dashboard.save()
-    instance.address.save()
+
     print("Brand Profile saved!")
     print("Brand Address saved!")
    
