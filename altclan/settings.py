@@ -17,7 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['altclanui.vercel.app', 'altclanstore.vercel.app', 'altclan-api-v1.onrender.com', 'localhost', '127.0.0.1', 'altclan.store']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'altclan.store', 'altclanstore.vercel.app']
 
 
 # Application definition
@@ -198,10 +198,14 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': False,
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
-
-
-
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://altclan.store',
+    'https://altclan.store',
+    
+    
+]
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_REPLACE_HTTPS_REFERER = True
