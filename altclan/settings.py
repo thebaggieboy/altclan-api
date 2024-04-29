@@ -17,7 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'altclan.store', 'altclanstore.vercel.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'altclan.store', 'altclanstore.vercel.app' 'altclan-api-v1.onrender.com']
 
 
 # Application definition
@@ -175,7 +175,7 @@ SESSION_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ['https://*.altclan.store', 'altclan.store']
+CSRF_TRUSTED_ORIGINS = ['https://*.altclan.store', 'https://altclan.store', 'altclan.store', 'https://altclan-api-v1.onrender.com']
 
 REST_AUTH = {
     
@@ -203,6 +203,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:3000',
     'http://altclan.store',
     'https://altclan.store',
+    'https://altclan-api-v1.onrender.com'
     
     
 ]
