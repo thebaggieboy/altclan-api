@@ -182,8 +182,8 @@ REST_AUTH = {
     'USE_JWT': True,
     'JWT_AUTH_COOKIE': 'token',
     'JWT_AUTH_REFRESH_COOKIE': 'refresh-token',
-    'JWT_AUTH_COOKIE_USE_CSRF':True,
-    'JWT_AUTH_SAMESITE': 'None',
+    'JWT_AUTH_COOKIE_USE_CSRF':False,
+    'JWT_AUTH_SAMESITE': 'Lax',
     'JWT_AUTH_SECURE': True,
     'JWT_AUTH_HTTPONLY': True,
 }
@@ -208,6 +208,18 @@ CORS_ALLOW_METHODS = [
 'POST',
 'PUT',
 ]
+CORS_ALLOW_HEADERS = [
+'accept',
+'accept-encoding',
+'authorization',
+'content-type',
+'dnt',
+'origin',
+'user-agent',
+'x-csrftoken',
+'x-requested-with',
+]
+
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
