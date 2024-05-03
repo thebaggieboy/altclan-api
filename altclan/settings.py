@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'djoser',
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
@@ -193,6 +194,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES':('JWT',),
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
@@ -255,3 +257,11 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION ='optional'
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+
+
+# DJOSER SETTINGS
+DJOSER = {
+    'SERIALIZERS': {
+       'user_create':'accounts.serializers.UserCreateSerializer' 
+    },
+}
