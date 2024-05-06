@@ -52,8 +52,7 @@ class UserManager(BaseUserManager):
         """
         user = self.create_user(
           
-            email,
-            
+            email,  
             first_name=first_name,
             last_name=last_name,
             mobile_number=mobile_number,
@@ -118,10 +117,10 @@ class CustomUser(AbstractBaseUser):
         unique=True,
     )
     user_type = models.CharField(max_length=250, default='user',choices=USER_TYPE)
-    first_name = models.CharField(max_length=250, default='')
-    last_name = models.CharField(max_length=250, default='')
-    mobile_number = models.CharField(max_length=250, default='')
-    display_picture = models.ImageField(upload_to='Display Picture', default='')  
+    first_name = models.CharField(max_length=250, default='',null=True, blank=True)
+    last_name = models.CharField(max_length=250, default='' ,null=True, blank=True)
+    mobile_number = models.CharField(max_length=250, default='', null=True, blank=True)
+    display_picture = models.ImageField(upload_to='Display Picture', default='', null=True, blank=True)  
     address = models.CharField(max_length=250, default='')
     city = models.CharField(max_length=250, default='')
     state = models.CharField(max_length=250, default='')
