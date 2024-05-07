@@ -120,7 +120,7 @@ class Cart(models.Model):
 
 class WishList(models.Model):
 
-    user_email = models.OneToOneField(User, on_delete=models.CASCADE, related_name='wishlist', null=True, blank=True)
+    user_email = models.CharField(max_length=250, default='', null=True, blank=True)
    
     quantity = models.IntegerField(null=True, blank=True)
     product_name = models.CharField(max_length=250, default='', null=True, blank=True)
