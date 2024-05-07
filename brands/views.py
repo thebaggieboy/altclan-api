@@ -5,7 +5,13 @@ from accounts.models import BrandProfile, BrandUser
 from .models import  WishList, Merchandise, Leads, BrandDashboard
 
 from .serializers import *
- 
+
+class WishListViewSet(viewsets.ModelViewSet):
+    queryset = WishList.objects.all()
+    serializer_class = WishListSerializer
+    #order_by = ['date_created']
+
+
 class MerchandiseViewSet(viewsets.ModelViewSet):
     queryset = Merchandise.objects.all().order_by('-date_created').values()
     serializer_class = MerchandiseSerializer

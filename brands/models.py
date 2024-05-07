@@ -123,7 +123,9 @@ class WishList(models.Model):
     user_email = models.OneToOneField(User, on_delete=models.CASCADE, related_name='wishlist', null=True, blank=True)
    
     quantity = models.IntegerField(null=True, blank=True)
-    merchandises = ArrayField(models.CharField(max_length=250),blank=True, null=True)
+    product_name = models.CharField(max_length=250, default='', null=True, blank=True)
+    display_image = models.ImageField(upload_to="WishList Images", null=True, blank=True)
+    colors = ArrayField(models.CharField(max_length=250),blank=True, null=True)
 
     def __str__(self):
         return f'{self.merchandises} x ( {self.quantity} ) pcs by {self.user_email} '

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import  Merchandise, Leads, BrandDashboard
 from django.conf import settings
 from accounts.models import BrandProfile
-
+from brands.models import WishList
 
 BrandUser = settings.BRAND_USER_MODEL
 
@@ -35,3 +35,11 @@ class MerchandiseSerializer(serializers.HyperlinkedModelSerializer):
         ]
         
 
+
+class WishListSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = WishList
+        fields = [
+            'id', 'product_name', 'display_image', 'colors',  'quantity' 
+        ]
+        
