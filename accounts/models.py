@@ -8,13 +8,15 @@ from django.utils import timezone
 from brands.display import LABEL_DISPLAY, COLLECTION_DISPLAY, COMMUNITY_TYPE_DISPLAY
 from brands.choices import STATUS, GENDER, COMMUNITY_TYPE, CLOTHING_CATEGORY
 from .choices import *
+from django.contrib.postgres.fields import ArrayField
+
 User = settings.AUTH_USER_MODEL
 BrandUser = settings.BRAND_USER_MODEL
 
 import uuid
 
 class UserManager(BaseUserManager):
-    def create_user(self, first_name, last_name, mobile_number, display_picture, email, password=None,  ):
+    def create_user(self, email, password=None):
         """
         Creates and saves a User with the given email and password.
         """
@@ -23,11 +25,6 @@ class UserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            first_name=first_name,
-            last_name=last_name,
-            mobile_number=mobile_number,
-            display_picture=display_picture,
-            
         )
 
         user.set_password(password)
@@ -46,17 +43,12 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self,  first_name, last_name, mobile_number, display_picture, email, password=None,):
+    def create_superuser(self, email, password):
         """
-        Creates and saves a superuser with the given email, password and other custom field details.
+        Creates and saves a superuser with the given email and password.
         """
         user = self.create_user(
-          
-            email,  
-            first_name=first_name,
-            last_name=last_name,
-            mobile_number=mobile_number,
-            display_picture=display_picture,
+            email,
             password=password,
         )
         user.staff = True
@@ -65,6 +57,46 @@ class UserManager(BaseUserManager):
         return user
 
 
+class BrandUserManager(BaseUserManager):
+    def create_user(self, email, password=None):
+        """
+        Creates and saves a User with the given email and password.
+        """
+        if not email:
+            raise ValueError('Users must have an email address')
+
+        user = self.model(
+            email=self.normalize_email(email),
+        )
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_staffuser(self, email, password):
+        """
+        Creates and saves a staff user with the given email and password.
+        """
+        user = self.create_user(
+            email,
+            password=password,
+        )
+        user.staff = True
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password):
+        """
+        Creates and saves a superuser with the given email and password.
+        """
+        user = self.create_user(
+            email,
+            password=password,
+        )
+        user.staff = True
+        user.admin = True
+        user.save(using=self._db)
+        return user
 
 class BrandUserManager(BaseUserManager):
     def create_user(self, email, password=None):
@@ -121,6 +153,9 @@ class CustomUser(AbstractBaseUser):
     last_name = models.CharField(max_length=250, default='' ,null=True, blank=True)
     mobile_number = models.CharField(max_length=250, default='', null=True, blank=True)
     display_picture = models.ImageField(upload_to='Display Picture', default='', null=True, blank=True)  
+    orders = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
+    wish_list = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
+     
     address = models.CharField(max_length=250, default='')
     city = models.CharField(max_length=250, default='')
     state = models.CharField(max_length=250, default='')
