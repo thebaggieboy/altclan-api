@@ -16,7 +16,7 @@ class UserCreateSerializer(BaseUserCreateSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'user_type', 'email', 'first_name', 'last_name', 'mobile_number', 'display_picture', 'following', 'wishlist']
+        fields = ['id', 'user_type', 'email', 'first_name', 'last_name', 'mobile_number', 'display_picture', 'following', 'wish_list']
 
 class BrandUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
