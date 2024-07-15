@@ -153,7 +153,9 @@ class CustomUser(AbstractBaseUser):
     last_name = models.CharField(max_length=250, default='' ,null=True, blank=True)
     mobile_number = models.CharField(max_length=250, default='', null=True, blank=True)
     display_picture = models.ImageField(upload_to='Display Picture', default='', null=True, blank=True)  
-    orders = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
+    orders = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)
+    following = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
+       
     wish_list = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
      
     address = models.CharField(max_length=250, default='')
