@@ -251,7 +251,7 @@ CORS_REPLACE_HTTPS_REFERER = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 BRAND_USER_MODEL='accounts.BrandUser'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION ='optional'
@@ -265,3 +265,12 @@ DJOSER = {
        'user_create':'accounts.serializers.UserCreateSerializer' 
     },
 }
+# Email SMTP Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST='mail.smtp2go.com'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER='altclan.store'
+EMAIL_HOST_PASSWORD="Gridlock10%"
+EMAIL_USE_TLS = False
+#EMAIL_USE_SSL = False
