@@ -6,7 +6,8 @@ User = settings.AUTH_USER_MODEL
 
 # Create your models here.
 class Reviews(models.Model):
-    user_email = models.CharField(default='', null=True, blank=True, max_length=255)
+    email = models.CharField(default='', null=True, blank=True, max_length=255)
+    brand_name = models.CharField(max_length=250, blank=True, null=True)
     slug = models.SlugField()
     review = models.TextField(default='', blank=True, null=True)
 
@@ -25,5 +26,5 @@ class Reviews(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(f'{self.user}-review')
+            self.slug = slugify(f'{self.email}-review')
         return super().save(*args, **kwargs)

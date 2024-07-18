@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'corsheaders',
     'crispy_forms',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+    'mail_templated'
 ]
 
 
@@ -176,7 +177,8 @@ SESSION_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ['https://*.altclan.store', 'https://altclan.store', 'altclan.store', 'https://altclan-api-v1.onrender.com','http://localhost:8000','http://127.0.0.1:8000', 'http://localhost:3000','http://127.0.0.1:3000',]
+
+CSRF_TRUSTED_ORIGINS = ['https://*.altclan.store', 'https://altclanstore.vercel.app', 'https://altclan.store', 'altclan.store', 'https://altclan-api-v1.onrender.com','http://localhost:8000','http://127.0.0.1:8000', 'http://localhost:3000','http://127.0.0.1:3000',]
 
 REST_AUTH = {
     
@@ -210,6 +212,7 @@ CORS_ALLOW_METHODS = [
 'POST',
 'PUT',
 ]
+
 CORS_ALLOW_HEADERS = [
 'accept',
 'accept-encoding',
@@ -231,6 +234,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://altclan.store',
     'https://altclan.store',
     'https://altclan-api-v1.onrender.com'
+    'https://resend.com'
 ]
 
 CORS_ORIGIN_WHITELIST = [
@@ -268,9 +272,9 @@ DJOSER = {
 # Email SMTP Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST='mail.smtp2go.com'
+EMAIL_HOST=os.getenv("EMAIL_HOST")
 EMAIL_PORT = 2525
-EMAIL_HOST_USER='altclan.store'
-EMAIL_HOST_PASSWORD="Gridlock10%"
+EMAIL_HOST_USER=os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD=os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = False
 #EMAIL_USE_SSL = False

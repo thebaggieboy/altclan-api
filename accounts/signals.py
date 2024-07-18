@@ -14,7 +14,9 @@ subject = 'Welcome to Altclan: Our community of Aesthetics'
 message = """
 Dear [User's Name],
 
-Welcome to Altclan! We’re thrilled to have you join our vibrant community of fashion enthusiasts and aesthetes. At Altclan, we strive to bring you the latest trends and unique pieces that elevate your style and express your individuality. Whether you’re looking for the latest fashion, exclusive designs, or aesthetic inspirations, we’ve got you covered.
+Welcome to Altclan! We’re thrilled to have you join our vibrant community of fashion enthusiasts and aesthetes.
+At Altclan, we strive to bring you the latest trends and unique pieces that elevate your style and express your individuality. 
+Whether you’re looking for the latest fashion, exclusive designs, or aesthetic inspirations, we’ve got you covered.
 
 To get started, here are a few things you can do:
 Explore Our Collections: Discover a curated selection of fashion items and aesthetic pieces tailored to your taste.
@@ -40,7 +42,7 @@ def create_profile(sender, instance, created, **kwargs):
     if created:
         
         Profile.objects.create(user=instance)
-        print("New user profile has been created at ", instance.email)
+        print("New user profile has been created for ", instance.email)
         
         send_mail( subject, message, email_from, recipient_list )
 
