@@ -233,7 +233,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://altclan.store',
     'https://altclan.store',
-    'https://altclan-api-v1.onrender.com'
+    'https://altclan-api-v1.onrender.com',
     'https://resend.com'
 ]
 
