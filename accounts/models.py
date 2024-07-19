@@ -158,7 +158,7 @@ class CustomUser(AbstractBaseUser):
        
     wish_list = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
      
-    address = models.CharField(max_length=250, default='')
+    billing_address = models.CharField(max_length=250, default='')
     city = models.CharField(max_length=250, default='')
     state = models.CharField(max_length=250, default='')
     zip = models.CharField(max_length=250, default='')
