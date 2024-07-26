@@ -35,7 +35,9 @@ class Merchandise(models.Model):
     brand_name = models.CharField(max_length=250, null=True, blank=True)
     merchandise_name = models.CharField(max_length=250, default='')
     merchandise_color = models.CharField(max_length=250, default='')
+    
     size_type = models.CharField(default='', null=True, blank=True, max_length=250)
+    color_type = models.CharField(default='', null=True, blank=True, max_length=250)
     available_sizes = ArrayField(models.CharField(max_length=250), default=list)
     available_colors = ArrayField(models.CharField(max_length=250), default=list)
     merchandise_type = models.CharField(default='', null=True, blank=True, max_length=250)
@@ -49,7 +51,7 @@ class Merchandise(models.Model):
     image_3 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
     image_4 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
     image_5 = models.ImageField(upload_to='Merch Image', default='', null=True, blank=True)
-    labels = models.CharField(max_length=250, choices=LABEL_DISPLAY, default='')
+    labels = models.CharField(max_length=250, null=True, blank=True, default='')
     price = models.IntegerField(null=True)
     delivery_cost = models.FloatField(null=True, default=0.00)
     discount = models.FloatField(null=True, default=0.00)
