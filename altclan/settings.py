@@ -17,7 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['altclan-api-v1.onrender.com', 'localhost', '127.0.0.1', 'altclan.store', 'altclanstore.vercel.app']
+ALLOWED_HOSTS = ['altclan-api-v1.onrender.com', 'localhost', '127.0.0.1', 'altclan-api.onrender.com']
 
 
 # Application definition
@@ -178,7 +178,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SECURE = True
 
-CSRF_TRUSTED_ORIGINS = ['https://*.altclan.store', 'https://*.altclan.com', 'https://altclan.com', 'altclan.com', 'https://altclanstore.vercel.app', 'https://altclan.store', 'altclan.store', 'https://*.altclan.store', 'https://altclan-api-v1.onrender.com','http://localhost:8000','http://127.0.0.1:8000', 'http://localhost:3000','http://127.0.0.1:3000',]
+CSRF_TRUSTED_ORIGINS = ['https://*.altclan.store', 'https://*.altclan.com', 'https://altclan.com', 'altclan.com', 'https://altclanstore.vercel.app', 'https://altclan.store', 'altclan.store', 'https://*.altclan.store', 'https://altclan-api-v1.onrender.com', 'altclan-api.onrender.com', 'http://altclan-api.onrender.com',  'http://localhost:8000','http://127.0.0.1:8000', 'http://localhost:3000','http://127.0.0.1:3000',]
 
 REST_AUTH = {
     
