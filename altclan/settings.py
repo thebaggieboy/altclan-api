@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'altclan.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://postgresql://altclan_ij7z_user:JRi5TkXQF7gQcJePaO2Zv577QXUrPp35@dpg-cts0d6t2ng1s73bta120-a.oregon-postgres.render.com/altclan_ij7z')
+       'default': dj_database_url.config(default='postgres://postgresql://altclan_31uu_user:Ba6V21dyUtnWkH5UfVz5RewPmk2d1pYS@dpg-cts0dh3tq21c7394a730-a.oregon-postgres.render.com/altclan_31uu')
 }
 
 
@@ -174,7 +174,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SECURE = True
 
-CSRF_TRUSTED_ORIGINS = ['https://*.altclan.store', 'https://*.altclan.com', 'https://altclan.com', 'altclan.com', 'https://altclanstore.vercel.app', 'https://altclan.store', 'altclan.store', 'https://*.altclan.store', 'https://altclan-api-v1.onrender.com', 'altclan-api.onrender.com', 'http://altclan-api.onrender.com',  'http://localhost:8000','http://127.0.0.1:8000', 'http://localhost:3000','http://127.0.0.1:3000',]
+CSRF_TRUSTED_ORIGINS = ['https://*.altclan.store', 'https://*.altclan.com', 'https://altclan.com',  'https://altclanstore.vercel.app', 'https://altclan.store',  'https://*.altclan.store',  'http://altclan-api.onrender.com',  'http://localhost:8000','http://127.0.0.1:8000', 'http://localhost:3000','http://127.0.0.1:3000',]
 
 REST_AUTH = {
     
