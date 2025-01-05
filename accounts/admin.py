@@ -67,4 +67,4 @@ class BrandUserAdmin(BaseUserAdmin):
 admin.site.register(User, UserAdmin)
 admin.site.register(BrandUser, BrandUserAdmin)
 admin.site.register(Profile)
-#admin.site.register()
+#admin.site.register()zz
