@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'altclan.wsgi.application'
 
 
 DATABASES = {
-       'default': dj_database_url.config(default='postgres://postgresql://altclan_3mw4_user:IbKyZhq1i8wrgrXzhMVLAoYlHOiftRvi@dpg-ctt9s6q3esus7392iu2g-a.oregon-postgres.render.com/altclan_3mw4')
+       'default': dj_database_url.config(default='postgres://postgresql://altclan_e68n_user:iIRHTqEvDQlAZcWDyRPLvEOu8mfhp3As@dpg-cu0gajl6l47c73fptrjg-a.oregon-postgres.render.com/altclan_e68n')
 }
 
 
