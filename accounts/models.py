@@ -59,7 +59,23 @@ class UserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser):
     email = models.EmailField(
+        verbose_name='email address',
+        max_length=255,
+        unique=True,
     )
+    first_name = models.CharField(max_length=250, default='',null=True, blank=True)
+    last_name = models.CharField(max_length=250, default='' ,null=True, blank=True)
+    mobile_number = models.CharField(max_length=250, default='', null=True, blank=True)
+    display_picture = models.ImageField(upload_to='Display Picture', default='', null=True, blank=True)  
+    orders = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)
+    following = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
+       
+    wish_list = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
+     
+    billing_address = models.CharField(max_length=250, default='')
+    city = models.CharField(max_length=250, default='')
+    state = models.CharField(max_length=250, default='')
+    zip = models.CharField(max_length=250, default='')
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
