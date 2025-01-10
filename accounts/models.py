@@ -98,73 +98,33 @@ class BrandUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class BrandUserManager(BaseUserManager):
-    def create_user(self, email, password=None):
-        """
-        Creates and saves a User with the given email and password.
-        """
-        if not email:
-            raise ValueError('Users must have an email address')
-
-        user = self.model(
-            email=self.normalize_email(email),
-        )
-
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def create_staffuser(self, email, password):
-        """
-        Creates and saves a staff user with the given email and password.
-        """
-        user = self.create_user(
-            email,
-            password=password,
-        )
-        user.staff = True
-        user.save(using=self._db)
-        return user
-
-    def create_superuser(self, email, password):
-        """
-        Creates and saves a superuser with the given email and password.
-        """
-        user = self.create_user(
-            email,
-            password=password,
-        )
-        user.staff = True
-        user.admin = True
-        user.save(using=self._db)
-        return user
-
 
 
 class CustomUser(AbstractBaseUser):
+    
     username = models.CharField(blank=True, null=True, max_length=25, unique=True)
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
         unique=True,
-    )
-   
-    first_name = models.CharField(max_length=250, default='',null=True, blank=True)
-    last_name = models.CharField(max_length=250, default='' ,null=True, blank=True)
+    )   
+    brand_name = models.CharField(max_length=250, default='', null=True, blank=True)
+    brand_logo = models.URLField(default='', null=True, blank=True)
+    brand_bio = models.TextField(default='', null=True, blank=True)
+    brand_type = models.CharField(choices=COMMUNITY_TYPE, default='', max_length=250, null=True, blank=True)
     mobile_number = models.CharField(max_length=250, default='', null=True, blank=True)
-    display_picture = models.ImageField(upload_to='Display Picture', default='', null=True, blank=True)  
-    orders = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)
-    following = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
-       
+    followers = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
     wish_list = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
-     
-    billing_address = models.CharField(max_length=250, default='')
-    city = models.CharField(max_length=250, default='')
-    state = models.CharField(max_length=250, default='')
-    zip = models.CharField(max_length=250, default='')
+   
+    slug = models.SlugField(null=True, blank=True, default='')
+    billing_address = models.CharField(max_length=250, default='', null=True, blank=True)
+    city = models.CharField(max_length=250, default='', null=True, blank=True)
+    state = models.CharField(max_length=250, default='', null=True, blank=True)
+    zip = models.CharField(max_length=250, default='', null=True, blank=True)
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
+
 
     # notice the absence of a "Password field", that is built in.
 
