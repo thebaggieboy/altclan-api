@@ -142,7 +142,7 @@ class BrandUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser):
-    
+    username = models.CharField(blank=True, null=True, max_length=25, unique=True)
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
