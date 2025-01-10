@@ -57,6 +57,59 @@ class UserManager(BaseUserManager):
         return user
 
 
+class CustomUser(AbstractBaseUser):
+    email = models.EmailField(
+    )
+    is_active = models.BooleanField(default=True)
+    staff = models.BooleanField(default=False) # a admin user; non super-user
+    admin = models.BooleanField(default=False) # a superuser
+
+    # notice the absence of a "Password field", that is built in.
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = [] # Email & Password are required by default.
+
+    def get_full_name(self):
+        # The user is identified by their email address
+        return self.email
+
+    def get_short_name(self):
+        # The user is identified by their email address
+        return self.email
+
+    def __str__(self):
+        return self.email
+    
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+    def has_perms(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        return self.staff
+
+    @property
+    def is_admin(self):
+        "Is the user a admin member?"
+        return self.admin
+
+    objects = UserManager()
+
+
+
+
+
 class BrandUserManager(BaseUserManager):
     def create_user(self, email, password=None):
         """
@@ -98,76 +151,6 @@ class BrandUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-
-
-class CustomUser(AbstractBaseUser):
-    
-    username = models.CharField(blank=True, null=True, max_length=25, unique=True)
-    email = models.EmailField(
-        verbose_name='email address',
-        max_length=255,
-        unique=True,
-    )   
-    brand_name = models.CharField(max_length=250, default='', null=True, blank=True)
-    brand_logo = models.URLField(default='', null=True, blank=True)
-    brand_bio = models.TextField(default='', null=True, blank=True)
-    brand_type = models.CharField(choices=COMMUNITY_TYPE, default='', max_length=250, null=True, blank=True)
-    mobile_number = models.CharField(max_length=250, default='', null=True, blank=True)
-    followers = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
-    wish_list = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
-   
-    slug = models.SlugField(null=True, blank=True, default='')
-    billing_address = models.CharField(max_length=250, default='', null=True, blank=True)
-    city = models.CharField(max_length=250, default='', null=True, blank=True)
-    state = models.CharField(max_length=250, default='', null=True, blank=True)
-    zip = models.CharField(max_length=250, default='', null=True, blank=True)
-    is_active = models.BooleanField(default=True)
-    staff = models.BooleanField(default=False) # a admin user; non super-user
-    admin = models.BooleanField(default=False) # a superuser
-
-
-    # notice the absence of a "Password field", that is built in.
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = [] # Email & Password are required by default.
-
-    def get_full_name(self):
-        # The user is identified by their email address
-        return self.email
-
-
-    def get_short_name(self):
-        # The user is identified by their email address
-        return self.email
-
-    def __str__(self):
-        return self.email
-    
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
-    def has_perms(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
-
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
-        return True
-
-    @property
-    def is_staff(self):
-        "Is the user a member of staff?"
-        return self.staff
-
-    @property
-    def is_admin(self):
-        "Is the user a admin member?"
-        return self.admin
-
-    objects = UserManager()
 
 class BrandUser(AbstractBaseUser):
     
