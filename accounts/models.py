@@ -115,7 +115,7 @@ class CustomUser(AbstractBaseUser):
     mobile_number = models.CharField(max_length=250, default='', null=True, blank=True)
     followers = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
     wish_list = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
-    orders = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)
+    #orders = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)
     slug = models.SlugField(null=True, blank=True, default='')
     billing_address = models.CharField(max_length=250, default='', null=True, blank=True)
     city = models.CharField(max_length=250, default='', null=True, blank=True)
