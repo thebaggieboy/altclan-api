@@ -108,11 +108,12 @@ class CustomUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )   
-    first_name = models.CharField(max_length=250, default='', null=True, blank=True)
-    last_name = models.CharField(max_length=250, default='', null=True, blank=True)
-    display_picture = models.ImageField(upload_to='Display Picture', default='', null=True, blank=True)
+    brand_name = models.CharField(max_length=250, default='', null=True, blank=True)
+    brand_logo = models.URLField(default='', null=True, blank=True)
+    brand_bio = models.TextField(default='', null=True, blank=True)
+    brand_type = models.CharField(choices=COMMUNITY_TYPE, default='', max_length=250, null=True, blank=True)
     mobile_number = models.CharField(max_length=250, default='', null=True, blank=True)
-    following = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
+    followers = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
     wish_list = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
     orders = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)
     slug = models.SlugField(null=True, blank=True, default='')
