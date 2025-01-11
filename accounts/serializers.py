@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.conf import settings
-from .models import Profile, CustomUser, BrandUser
+from .models import Profile, CustomUser
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
 
 
@@ -16,13 +16,8 @@ class UserCreateSerializer(BaseUserCreateSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id','email', 'first_name', 'last_name', 'mobile_number', 'billing_address', 'state', 'city', 'zip', 'display_picture', 'following', 'wish_list']
-
-class BrandUserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = BrandUser
-        fields = ['id', 'email', 'brand_name', 'brand_logo',  'brand_bio', 'brand_type', 'mobile_number']
-
+        fields = ['id','email', 'first_name', 'last_name', 'mobile_number', 'billing_address', 'state', 'city', 'zip', 'display_picture', 'following', 'wish_list', 'orders']
+ 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.HyperlinkedRelatedField(view_name='profile-detail',queryset=Profile.objects.all())
     class Meta:

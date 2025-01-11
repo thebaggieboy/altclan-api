@@ -1,23 +1,9 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import  Merchandise, Leads, BrandDashboard
+from .models import  Merchandise, Leads
 from django.conf import settings
-from accounts.models import BrandProfile
+ 
 from brands.models import WishList
-
-BrandUser = settings.BRAND_USER_MODEL
-
-
-class BrandProfileSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = BrandProfile
-        fields = ['id','user','date_created']
-
-class BrandDashboardSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = BrandDashboard
-        fields = ['total_views', 'total_products', 'total_users', 'total_profit']
-
 
 
 class LeadsSerializer(serializers.HyperlinkedModelSerializer):
