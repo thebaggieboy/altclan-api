@@ -5,7 +5,7 @@ from dj_rest_auth.registration.views import SocialLoginView
 from rest_framework import viewsets
 from .serializers import UserSerializer, ProfileSerializer
 
-from .models import Profile, CustomUser
+from .models import Profile, AccountUser
  
 from django.conf import settings
 #BrandUser = settings.BRAND_USER_MODEL
@@ -15,7 +15,7 @@ class GoogleLogin(SocialLoginView): # if you want to use Implicit Grant, use thi
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = CustomUser.objects.all()
+    queryset = AccountUser.objects.all()
     serializer_class = UserSerializer
     
 

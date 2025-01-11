@@ -11,7 +11,7 @@ from transactions.serializers import *
 from transactions.models import *
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = CustomUser.objects.all()
+    queryset = AccountUser.objects.all()
     serializer_class = UserSerializer
 
 class ProfileViewSet(viewsets.ModelViewSet):

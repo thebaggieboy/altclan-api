@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'altclan.wsgi.application'
 
 
 DATABASES = {
-       'default': dj_database_url.config(default='postgres://postgresql://altclan_5c92_user:tHZ4nCmcTUmpHjyoJYrgA8NBEzEpfksR@dpg-cu0ntld2ng1s73eohop0-a.oregon-postgres.render.com/altclan_5c92')
+       'default': dj_database_url.config(default='postgres://postgresql://altclan_noqv_user:ecVdKtIzhs1y9cHQv4pQ6MbncYcAs6dE@dpg-cu1017bqf0us73d4mjvg-a.oregon-postgres.render.com/altclan_noqv')
 }
 
 
@@ -254,9 +254,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_REPLACE_HTTPS_REFERER = True
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
-AUTH_USER_MODEL = 'accounts.CustomUser'
-BRAND_USER_MODEL='accounts.BrandUser'
-
+AUTH_USER_MODEL = 'accounts.AccountUser'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION ='optional'

@@ -54,7 +54,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-class CustomUser(AbstractBaseUser):
+class AccountUser(AbstractBaseUser):
     
     email = models.EmailField(
         verbose_name='email address',

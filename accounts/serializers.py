@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.conf import settings
-from .models import Profile, CustomUser
+from .models import Profile, AccountUser
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
 
 
@@ -15,7 +15,7 @@ class UserCreateSerializer(BaseUserCreateSerializer):
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = CustomUser
+        model = AccountUser
         fields = ['id','email', 'first_name', 'last_name', 'mobile_number', 'billing_address', 'state', 'city', 'zip', 'display_picture', 'following', 'wish_list', 'orders']
  
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
