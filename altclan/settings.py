@@ -264,6 +264,10 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 # DJOSER SETTINGS
 DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
     'SERIALIZERS': {
        'user_create':'accounts.serializers.UserCreateSerializer' 
     },
@@ -272,8 +276,8 @@ DJOSER = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST=os.getenv("EMAIL_HOST")
-EMAIL_PORT = 2525
+EMAIL_PORT = 587
 EMAIL_HOST_USER=os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD=os.getenv("EMAIL_HOST_PASSWORD")
-EMAIL_USE_TLS = False
+EMAIL_USE_TLS = True
 #EMAIL_USE_SSL = False
