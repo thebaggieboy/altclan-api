@@ -19,7 +19,7 @@ Whether you’re looking for the latest fashion, exclusive designs, or aesthetic
 To get started, here are a few things you can do:
 Explore Our Collections: Discover a curated selection of fashion items and aesthetic pieces tailored to your taste.
 Personalize Your Profile: Complete your profile to receive personalized recommendations and exclusive offers.
-We’re here to support you every step of the way. If you have any questions or need assistance, feel free to reach out to our support team at [support email/contact info].
+We’re here to support you every step of the way. If you have any questions or need assistance, feel free to reach out to our support team at support@altclan.com
 
 Thank you for choosing Altclan. We look forward to being a part of your fashion journey!
 Best regards,
