@@ -12,8 +12,6 @@ from django.core.mail import send_mail
 
 subject = 'Welcome to Altclan: Our community of Aesthetics'
 message = """
-Dear [User's Name],
-
 Welcome to Altclan! We’re thrilled to have you join our vibrant community of fashion enthusiasts and aesthetes.
 At Altclan, we strive to bring you the latest trends and unique pieces that elevate your style and express your individuality. 
 Whether you’re looking for the latest fashion, exclusive designs, or aesthetic inspirations, we’ve got you covered.
@@ -21,17 +19,15 @@ Whether you’re looking for the latest fashion, exclusive designs, or aesthetic
 To get started, here are a few things you can do:
 Explore Our Collections: Discover a curated selection of fashion items and aesthetic pieces tailored to your taste.
 Personalize Your Profile: Complete your profile to receive personalized recommendations and exclusive offers.
-Join the Conversation: Connect with other members of the Altclan community to share your style tips, inspirations, and feedback.
 We’re here to support you every step of the way. If you have any questions or need assistance, feel free to reach out to our support team at [support email/contact info].
 
 Thank you for choosing Altclan. We look forward to being a part of your fashion journey!
-
 Best regards,
 
 Enimofe Odujirin
-Founder, Altclan
-[https://altclan.store]
-[noreply@altclan.store]
+Co-Founder, Altclan
+https://altclan.com
+noreply@altclan.com
 """
 email_from = 'hello@demomailtrap.com'
 recipient_list = ['baggieboy702@gmail.com']
