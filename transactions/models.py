@@ -72,7 +72,8 @@ class Order(models.Model):
 
 class Payment(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True,related_name='user_order')
-    order = models.OneToOneField('Order', models.CASCADE, null=True, blank=True, related_name='user_payment')
+    billing_period = models.CharField(max_length=15)
+    payment_method = models.CharField(max_length=15)
     paystack_charge_id = models.CharField(max_length=50, default='', null=True, blank=True)
     paystack_reference_number = models.CharField(max_length=250, blank=True, null=True)
     amount = models.FloatField()
@@ -82,9 +83,7 @@ class Payment(models.Model):
  
     def save(self, *args, **kwargs):
 
-        Order.objects.create()
-        print('[CREATED] - A new order has been created')
-        super(Payment, self).save(*args, **kwargs)
+     super(Payment, self).save(*args, **kwargs)
         
     def __str__(self): 
         return self.amount
@@ -96,6 +95,13 @@ class Coupon(models.Model):
 
     def __str__(self):
         return self.code
+
+class BillingSettings(models.Model):
+    billing_period = models.CharField(max_length=15)
+    payment_method = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.biling_period
 
 
 class Refund(models.Model):
