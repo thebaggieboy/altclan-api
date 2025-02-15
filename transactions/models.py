@@ -72,8 +72,8 @@ class Order(models.Model):
 
 class Payment(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True,related_name='user_order')
-    billing_period = models.CharField(max_length=15)
-    payment_method = models.CharField(max_length=15)
+    billing_period = models.CharField(max_length=15,  null=True, blank=True)
+    payment_method = models.CharField(max_length=15,  null=True, blank=True)
     paystack_charge_id = models.CharField(max_length=50, default='', null=True, blank=True)
     paystack_reference_number = models.CharField(max_length=250, blank=True, null=True)
     amount = models.FloatField()
