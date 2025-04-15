@@ -6,8 +6,8 @@ User = settings.AUTH_USER_MODEL
 
 # Create your models here.
 class Reviews(models.Model):
-    email = models.CharField(default='', null=True, blank=True, max_length=255)
-    brand_name = models.CharField(max_length=250, blank=True, null=True)
+
+    user = models.CharField(max_length=250, blank=True, null=True)
     slug = models.SlugField()
     review = models.TextField(default='', blank=True, null=True)
 
