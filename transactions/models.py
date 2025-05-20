@@ -69,21 +69,23 @@ class Order(models.Model):
     def __str__(self):
         return f'{self.tracking_number}'
 
-
 class Payment(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True,related_name='user_order')
-    billing_period = models.CharField(max_length=15,  null=True, blank=True)
-    payment_method = models.CharField(max_length=15,  null=True, blank=True)
-    paystack_charge_id = models.CharField(max_length=50, default='', null=True, blank=True)
     paystack_reference_number = models.CharField(max_length=250, blank=True, null=True)
+    customer = models.CharField(max_length=250, blank=True, null=True)
+
+    payment_method = models.CharField(max_length=250, blank=True, null=True)    
     amount = models.FloatField()
     status = models.CharField(max_length=250, null=True, blank=True)
+    order_id = models.CharField(max_length=250, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
  
     def save(self, *args, **kwargs):
 
-     super(Payment, self).save(*args, **kwargs)
+        
+        print('[CREATED] - A new payment has been made')
+        super(Payment, self).save(*args, **kwargs)
         
     def __str__(self): 
         return self.amount
