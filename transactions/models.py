@@ -19,6 +19,11 @@ DEPOSIT_TYPE = (
     ('Card', 'Card'),
     ('USSD', 'USSD'),
 )
+BILLING_TYPE = (
+    ('Monthly', 'Monthly'),
+    ('Yearly', 'Yearly'),
+    
+)
 
 User = settings.AUTH_USER_MODEL
 RANDOM_ORDER_ID = get_random_string(length=12)
@@ -47,7 +52,16 @@ class Withdraw(models.Model):
         return self.code
 
 
-# Create your models here.
+class Cards(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,related_name='user_cards')
+    card_holder = models.CharField(max_length=250,  default='', null=True)
+    card_number = models.CharField(max_length=20, default='', null=True)
+    expiry_date = models.CharField(max_length=15, default='', null=True)
+    cvv = models.CharField(max_length=15, default='', null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.card_holder
 class Order(models.Model): 
 
     name_of_item = models.CharField(max_length=250, blank=True)
@@ -89,6 +103,23 @@ class Payment(models.Model):
         
     def __str__(self): 
         return self.amount
+class Billing(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True,related_name='user_order')
+    billing_period = models.CharField(max_length=250, blank=True, null=True)
+    payment_method = models.CharField(max_length=250, blank=True, null=True) 
+    card = models.ForeignKey(Cards, on_delete=models.CASCADE, null=True, blank=True)   
+    invoice_id = models.CharField(max_length=250, blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    renewal_date = models.DateTimeField()
+ 
+    def save(self, *args, **kwargs):
+
+        
+        print('[CREATED] - A new billing information has been created')
+        super(Payment, self).save(*args, **kwargs)
+        
+    def __str__(self): 
+        return self.timestamp
 
 
 class Coupon(models.Model):
