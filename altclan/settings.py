@@ -24,6 +24,7 @@ ALLOWED_HOSTS = ['altclan-api-v1.onrender.com', 'localhost', '127.0.0.1', 'altcl
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +50,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'crispy_forms',
     'rest_framework_simplejwt',
+    "channels",
+ 
+    
   
 ]
 
@@ -86,6 +90,20 @@ TEMPLATES = [
         },
     },
 ]
+
+
+CHANNELS_WS_PROTOCOLS = ["websocket"]
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": ["redis://red-d0oua23e5dus73d9hhug:6379"],  # Simple string format
+        },
+    },
+}
+# Channels configuration
+ASGI_APPLICATION = 'altclan.asgi.application'
 
 WSGI_APPLICATION = 'altclan.wsgi.application'
 
