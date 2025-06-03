@@ -9,7 +9,7 @@ from accounts.views import *
 from brands.views import *
 #from brands.views import *
 from notifications import consumers
-
+from notifications import views
 from rest_framework_simplejwt import views as jwt_views
 
 router = routers.DefaultRouter()
@@ -35,9 +35,9 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
-    path('dj-rest-auth/google/', GoogleLogin.as_view(), name='google_login')
+    path('dj-rest-auth/google/', GoogleLogin.as_view(), name='google_login'),
     
-      path('api/notifications/', views.NotificationListAPI.as_view(), name='notification-list'),
+    path('api/notifications/', views.NotificationListAPI.as_view(), name='notification-list'),
     path('api/notifications/unread_count/', views.UnreadNotificationCountAPI.as_view(), name='unread-count'),
     path('api/notifications/mark_as_read/', views.MarkAsReadAPI.as_view(), name='mark-as-read'),
     re_path(r'ws/notifications/$', consumers.NotificationConsumer.as_asgi()),
