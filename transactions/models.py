@@ -104,7 +104,7 @@ class Payment(models.Model):
     def __str__(self): 
         return self.amount
 class Billing(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True,related_name='user_order')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True,related_name='user_billing')
     billing_period = models.CharField(max_length=250, blank=True, null=True)
     payment_method = models.CharField(max_length=250, blank=True, null=True) 
     card = models.ForeignKey(Cards, on_delete=models.CASCADE, null=True, blank=True)   
