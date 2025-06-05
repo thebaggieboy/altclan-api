@@ -5,16 +5,8 @@ services:
     plan: free
     dockerfilePath: Dockerfile
     healthCheckPath: /
+    envVarGroups:
+      - altclan-production  # Reference to environment group created in Render dashboard
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: altclan.settings
-      - key: SECRET_KEY
-        value: django-insecure-#ioqb6nvy+hwu5(%r@(dv!6zztc7vb*+altclbrandsapivhihr5*oe
-      - key: ALLOWED_HOSTS
-        value: altclan-api.onrender.com,localhost,127.0.0.1
-      - key: CORS_ALLOW_ALL_ORIGINS
-        value: "True"
-      - key: DATABASE_URL
-        value: postgresql://altclan_md6w_user:g5IYA7Iax4fIx5JQ0IpT9wzaoAmaXcPB@dpg-d0idtlmuk2gs73apg1jg-a.oregon-postgres.render.com/altclan_md6w
-      - key: REDIS_URL
-        value: redis://red-d0oua23e5dus73d9hhug:6379

@@ -5,9 +5,8 @@ services:
     command: daphne altclan.asgi:application --bind 0.0.0.0 --port ${PORT:-8000}
     ports:
       - "${PORT:-8000}:${PORT:-8000}"
+    env_file:
+      - .env
     environment:
-      - DATABASE_URL=postgresql://altclan_md6w_user:g5IYA7Iax4fIx5JQ0IpT9wzaoAmaXcPB@dpg-d0idtlmuk2gs73apg1jg-a.oregon-postgres.render.com/altclan_md6w
-      - REDIS_URL=redis://red-d0oua23e5dus73d9hhug:6379
       - DJANGO_SETTINGS_MODULE=altclan.settings
-      - SECRET_KEY=django-insecure-#ioqb6nvy+hwu5(%r@(dv!6zztc7vb*+j63uie9ruvhihr5*oe
-      - ALLOWED_HOSTS=altclan-api.onrender.com,localhost,127.0.0.1   
+      - PORT=${PORT:-8000}
