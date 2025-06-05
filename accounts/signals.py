@@ -254,13 +254,13 @@ def create_profile(sender, instance, created, **kwargs):
         </head>
         <body>
             <div class="email-container">
-                <!-- Header -->
+              
                 <div class="header">
                     <div class="logo">ALTCLAN</div>
                     <div class="header-subtitle">Fashion Community Platform</div>
                 </div>
                 
-                <!-- Main Content -->
+               
                 <div class="content">
                     <h1 class="welcome-title">Welcome to Altclan,  <span class="emoji">🎉</span></h1>
                     
@@ -270,7 +270,7 @@ def create_profile(sender, instance, created, **kwargs):
                         and unique pieces that you create.
                     </p>
                     
-                    <!-- Action Items -->
+               
                     <div class="action-section">
                         <h2 class="action-title">Get Started in 3 Easy Steps</h2>
                         <ul class="action-list">
@@ -304,13 +304,13 @@ def create_profile(sender, instance, created, **kwargs):
                         </ul>
                     </div>
                     
-                    <!-- Call to Action -->
+                
                     <div class="cta-section">
                         <a href="" class="cta-button">Complete Your Profile</a>
                         <a href="" class="cta-button secondary">Visit Dashboard</a>
                     </div>
                     
-                    <!-- Support Section -->
+                    
                     <div class="support-section">
                         <h3 class="support-title">Need Help Getting Started?</h3>
                         <p class="support-text">
@@ -321,7 +321,7 @@ def create_profile(sender, instance, created, **kwargs):
                     </div>
                 </div>
                 
-                <!-- Footer -->
+            
                 <div class="footer">
                     <div class="footer-signature">
                         <div class="footer-name">Enimofe Odujirin</div>
