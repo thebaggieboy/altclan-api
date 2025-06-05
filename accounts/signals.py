@@ -344,7 +344,7 @@ def create_profile(sender, instance, created, **kwargs):
         recipient_list = [instance.email]
         
         Profile.objects.create(user=instance)
-        print("New user profile has been created for ", instance.email)zzz
+        print("New user profile has been created for ", instance.email)
         # send email to new user
         send_mail( subject, message, email_from, recipient_list )
  
