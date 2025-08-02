@@ -4,9 +4,14 @@ services:
     env: docker
     plan: free
     dockerfilePath: Dockerfile
-    healthCheckPath: /
+    healthCheckPath: /health/
+    region: oregon
     envVarGroups:
-      - altclan-production  # Reference to environment group created in Render dashboard
+      - altclan-production
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: altclan.settings
+      - key: PORT
+        value: 8000
+    autoDeploy: true
+    branch: main

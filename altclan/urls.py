@@ -10,6 +10,7 @@ from brands.views import *
 #from brands.views import *
 from notifications import consumers
 from notifications import views
+from core.views import HealthCheckView
 from rest_framework_simplejwt import views as jwt_views
 
 router = routers.DefaultRouter()
@@ -33,6 +34,8 @@ urlpatterns = [
     path('api/notifications/', views.NotificationListAPI.as_view(), name='notification-list'),
     path('api/notifications/unread_count/', views.UnreadNotificationCountAPI.as_view(), name='unread-count'),
     path('api/notifications/mark_as_read/', views.MarkAsReadAPI.as_view(), name='mark-as-read'),
+    # In urls.py
+    path('health/', HealthCheckView.as_view(), name='health'),
     re_path(r'ws/notifications/$', consumers.NotificationConsumer.as_asgi()),
   
 
