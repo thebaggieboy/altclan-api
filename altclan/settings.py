@@ -163,7 +163,7 @@ CSRF_COOKIE_SECURE = True
 # Read CSRF_TRUSTED_ORIGINS from environment variable
 CSRF_TRUSTED_ORIGINS = os.getenv(
     'CSRF_TRUSTED_ORIGINS', 
-    'https://altclan.com,https://altclan.store,http://localhost:8000,http://localhost:3000'
+    'https://altclan.com,https://altclan.store, https://altclanui.vercel.app,http://localhost:8000,http://localhost:3000'
 ).split(',')
 
 REST_AUTH = {
@@ -215,7 +215,7 @@ CORS_ALLOW_HEADERS = [
 # Read CORS origins from environment variable
 CORS_ALLOWED_ORIGINS = os.getenv(
     'CORS_ALLOWED_ORIGINS',
-    'http://localhost:3000,http://127.0.0.1:3000,http://localhost:8000,http://127.0.0.1:8000'
+    'http://localhost:3000,http://127.0.0.1:3000,http://localhost:8000,http://127.0.0.1:8000, https://altclanui.vercel.app'
 ).split(',')
 
 CORS_ORIGIN_WHITELIST = CORS_ALLOWED_ORIGINS
