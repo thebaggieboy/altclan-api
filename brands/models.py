@@ -37,7 +37,9 @@ class Merchandise(models.Model):
     labels = models.CharField(max_length=250, null=True, blank=True, default='')
     price = models.IntegerField(null=True)
     delivery_cost = models.FloatField(null=True, default=0.00)
+    sub_total = models.FloatField(null=True, default=0.00)
     discount = models.FloatField(null=True, default=0.00)
+    
     
     slug = models.SlugField()
     date_created = models.DateTimeField(default=timezone.now())
