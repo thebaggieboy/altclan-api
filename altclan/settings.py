@@ -269,8 +269,6 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
 EMAIL_USE_TLS = True
 
-# Detailed logging configuration
-LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
