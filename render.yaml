@@ -13,5 +13,15 @@ services:
         value: altclan.settings
       - key: PORT
         value: 8000
+      - key: EMAIL_HOST
+        value: mail.privateemail.com
+      - key: EMAIL_PORT
+        value: 587
+      - key: EMAIL_USE_TLS
+        value: "True"
+      - key: EMAIL_TIMEOUT
+        value: 10
+      - key: DEFAULT_FROM_EMAIL
+        value: noreply@altclan.store
     autoDeploy: true
     branch: main
