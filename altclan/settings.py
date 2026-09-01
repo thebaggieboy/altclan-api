@@ -269,10 +269,12 @@ DJOSER = {
 
 EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
 ANYMAIL = {
-    "RESEND_API_KEY": os.getenv("RESEND_API_KEY"),
+    "RESEND_API_KEY": os.getenv("RESEND_API_KEY") or os.getenv("ANYMAIL_RESEND_API_KEY"),
 }
 DEFAULT_FROM_EMAIL = os.getenv(
     "DEFAULT_FROM_EMAIL",
     "ALTCLAN <noreply@altclan.shop>"
 )
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
+MARKETING_EMAILS = os.getenv('MARKETING_EMAILS', '').split(',')
+FRONTEND_BASE_URL = os.getenv('FRONTEND_BASE_URL', '')
