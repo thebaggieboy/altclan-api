@@ -7,7 +7,7 @@ class AccountConfig(AppConfig):
    
 
     def ready(self):
-        import accounts.login_signals
+        import accounts.signals
 
 
 
