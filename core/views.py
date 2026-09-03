@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_headers
+from rest_framework import viewsets
 from accounts.models import * 
 from accounts.views import *
 from accounts.serializers import *
@@ -15,6 +19,9 @@ from django.views import View
 class HealthCheckView(View):
     def get(self, request):
         return JsonResponse({"status": "healthy"})
+@method_decorator(cache_page(300), name='list')
+@method_decorator(cache_page(300), name='retrieve')
+@method_decorator(vary_on_headers('Cookie', 'Authorization'), name='list')
 class UserViewSet(viewsets.ModelViewSet):
     queryset = AccountUser.objects.all()
     serializer_class = UserSerializer
@@ -23,11 +30,15 @@ class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
+@method_decorator(cache_page(300), name='list')
+@method_decorator(cache_page(300), name='retrieve')
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Reviews.objects.all()
     serializer_class = ReviewSerializer
 
-
+@method_decorator(cache_page(300), name='list')
+@method_decorator(cache_page(300), name='retrieve')
+@method_decorator(vary_on_headers('Cookie', 'Authorization'), name='list')
 class MerchandiseViewSet(viewsets.ModelViewSet):
     queryset = Merchandise.objects.all()
     serializer_class = MerchandiseSerializer

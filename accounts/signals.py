@@ -328,8 +328,8 @@ def create_profile(sender, instance, created, **kwargs):
                         <div class="footer-title">Co-Founder, Altclan</div>
                     </div>
                     <div class="footer-links">
-                        <a href="https://altclan.com">Visit Website</a> |
-                        <a href="mailto:support@altclan.com">Contact Support</a> |
+                        <a href="https://altclan.shop">Visit Website</a> |
+                        <a href="mailto:support@altclan.shop">Contact Support</a> |
                     
                     </div>
                     <p style="margin-top: 15px; font-size: 12px;">

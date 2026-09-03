@@ -1,27 +1,18 @@
-import os
+﻿import os
 from datetime import timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
 
-# Read ALLOWED_HOSTS from environment variable
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,altclan-api.onrender.com,altclan-brands-api-1-1.onrender.com').split(',')
 
-# Application definition
 INSTALLED_APPS = [
     "daphne",
     'django.contrib.admin',
@@ -96,19 +87,27 @@ CHANNEL_LAYERS = {
     },
 }
 
-# Channels configuration
 ASGI_APPLICATION = 'altclan.asgi.application'
 WSGI_APPLICATION = 'altclan.wsgi.application'
 
-# Database
-# Use DATABASE_URL from environment variable
 DATABASES = {
     'default': dj_database_url.config(
         default=os.getenv('DATABASE_URL')
     )
 }
 
-# Password validation
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.getenv('REDIS_URL', 'redis://localhost:6379'),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+        "KEY_PREFIX": "altclan_api",
+        "TIMEOUT": 300,
+    }
+}
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -124,20 +123,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 SITE_ID = 1
@@ -162,7 +158,6 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SECURE = True
 
-# Read CSRF_TRUSTED_ORIGINS from environment variable
 CSRF_TRUSTED_ORIGINS = os.getenv(
     'CSRF_TRUSTED_ORIGINS', 
     'https://altclan.com,https://altclan.store, https://altclanui.vercel.app,http://localhost:8000,http://localhost:3000'
@@ -190,7 +185,6 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': False,
 }
 
-# CORS Settings - read from environment variables
 CORS_ORIGIN_ALLOW_ALL = os.getenv('CORS_ALLOW_ALL_ORIGINS', 'False').lower() == 'true'
 
 CORS_ALLOW_METHODS = [
@@ -214,7 +208,6 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
 ]
 
-# Read CORS origins from environment variable
 CORS_ALLOWED_ORIGINS = os.getenv(
     'CORS_ALLOWED_ORIGINS',
     'http://localhost:3000,http://127.0.0.1:3000,http://localhost:8000,http://127.0.0.1:8000, https://altclanui.vercel.app'
@@ -238,7 +231,6 @@ APPEND_SLASH = False
 DOMAIN = os.getenv('DOMAIN', 'altclan.shop')
 SITE_NAME = os.getenv('SITE_NAME', 'Altclan')
 
-# DJOSER SETTINGS
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'accounts/reset_password?uid={uid}&token={token}',
     'USERNAME_RESET_CONFIRM_URL': '/username/reset/confirm/{uid}/{token}',
@@ -264,8 +256,6 @@ DJOSER = {
         'token_create': 'djoser.serializers.TokenCreateSerializer',
     },
 }
-
-# Email SMTP Settings
 
 EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
 ANYMAIL = {
