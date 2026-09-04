@@ -2,7 +2,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
 from .models import Order
-from ..core.email_utils import send_notification
+from core.email_utils import send_notification
 
 @receiver(post_save, sender=Order)
 def order_created(sender, instance, created, **kwargs):

@@ -345,7 +345,7 @@ def create_profile(sender, instance, created, **kwargs):
         
         Profile.objects.create(user=instance)
         print("New user profile has been created for ", instance.email)
-        from ..core.email_utils import send_notification
+        from core.email_utils import send_notification
         from django.utils.html import strip_tags
         # Use the built HTML template as html_message and a plain-text fallback
         plain_text = strip_tags(message)
